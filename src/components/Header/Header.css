@@ -7,31 +7,29 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-style: normal;
 }
-.header__buttons {
+.header__links {
   display: flex;
   column-gap: 30px;
+  align-items: center;
 }
-.header__button_type_signup {
-  padding: 0;
-  background: none;
-  border: none;
+.header__link{
+  text-decoration: none;
+}
+.header__link_type_signup {
   color: #fff;
-  font-family: Inter, Arial, Helvetica, sans-serif;
   font-size: 12px;
-  font-style: normal;
   font-weight: 500;
   line-height: 16px;
 }
-.header__button_type_signin {
+.header__link_type_signin {
   padding: 8px 20px;
-  border: none;
   border-radius: 3px;
   background: #3ddc84;
   color: #000;
-  font-family: Inter, Arial, Helvetica, sans-serif;
   font-size: 12px;
-  font-style: normal;
   font-weight: 500;
   line-height: 16px;
 }
