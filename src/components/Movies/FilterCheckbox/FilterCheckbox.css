@@ -15,6 +15,7 @@
   line-height: 18px;
 }
 .filter-checkbox__label {
+  cursor: pointer;
   position: relative;
 }
 .filter-checkbox__label::after {
@@ -27,7 +28,7 @@
   background: url(../../../images/smalltumboff.svg) no-repeat center;
 }
 .filter-checkbox__input {
- visibility: hidden;
+  visibility: hidden;
 }
 .filter-checkbox__input:checked ~ .filter-checkbox__label::after {
   position: absolute;

@@ -9,7 +9,7 @@ function FilterCheckbox() {
                     id="filter-checkbox__input"
                     type="checkbox"
                 />
-                <label className="filter-checkbox__label" for="filter-checkbox__input">
+                <label className="filter-checkbox__label" htmlFor="filter-checkbox__input">
                     <p className="filter-checkbox__text">Короткометражки</p>
                 </label>
             </div>

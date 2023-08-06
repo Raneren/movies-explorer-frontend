@@ -1,0 +1,16 @@
+.navigation {
+  position: absolute;
+  left: calc(50% - (212px/2));
+  display: flex;
+  column-gap: 16px;
+  text-align: right;
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px;
+}
+.navigation__link {
+  text-decoration: none;
+  color: #fff;
+}
