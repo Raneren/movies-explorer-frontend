@@ -8,7 +8,7 @@ import Register from "../Register/Register";
 import Movies from "../Movies/Movies";
 import Profile from "../Profile/Profile";
 import SavedMovies from "../SavedMovies/SavedMovies";
-import './App.css';
+import "./App.css";
 
 function App() {
   return (
@@ -28,3 +28,4 @@ function App() {
 }
 
 export default App;
+

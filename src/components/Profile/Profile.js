@@ -1,10 +1,8 @@
 import React from "react";
-import './Profile.css';
+import "./Profile.css";
 
 function Profile() {
-    return (
-      <></>
-    );
-  }
-  
-  export default Profile;
+  return <></>;
+}
+
+export default Profile;

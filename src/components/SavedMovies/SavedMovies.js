@@ -1,15 +1,15 @@
 import React from "react";
 import SearchForm from "../Movies/SearchForm/SearchForm";
 import MoviesCardList from "../Movies/MoviesCardList/MoviesCardList";
-import './SavedMovies.css';
+import "./SavedMovies.css";
 
 function SavedMovies() {
-    return (
-      <section className="saved-movies">
-        <SearchForm/>
-        <MoviesCardList/>
-      </section>
-    );
-  }
-  
-  export default SavedMovies;
+  return (
+    <section className="saved-movies">
+      <SearchForm />
+      <MoviesCardList />
+    </section>
+  );
+}
+
+export default SavedMovies;
