@@ -9,7 +9,7 @@ function Portfolio() {
         <li className="portfolio__list-item">
           <a
             className="portfolio__link"
-            href="#"
+            href="https://github.com/Raneren/how-to-learn"
             target="_blank"
             rel="noreferrer"
           >
@@ -19,7 +19,7 @@ function Portfolio() {
         <li className="portfolio__list-item">
           <a
             className="portfolio__link"
-            href="#"
+            href="https://github.com/Raneren/russian-travel"
             target="_blank"
             rel="noreferrer"
           >
@@ -29,7 +29,7 @@ function Portfolio() {
         <li className="portfolio__list-item">
           <a
             className="portfolio__link"
-            href="#"
+            href="https://github.com/Raneren/react-mesto-auth"
             target="_blank"
             rel="noreferrer"
           >
