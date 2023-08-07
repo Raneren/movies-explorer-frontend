@@ -13,7 +13,7 @@ function Header() {
       {(location.pathname === "/movies" ||
         location.pathname === "/saved-movies" ||
         location.pathname === "/profile") && <Navigation />}
-      {location.pathname === "/" && (
+      {location.pathname === "/" ? (
         <div className="header__links">
           <Link to="/sign-up" className="header__link header__link_type_signup">
             Регистрация
@@ -22,6 +22,10 @@ function Header() {
             Войти
           </Link>
         </div>
+      ) : (
+        <Link to="/profile" className="header__link header__link_type_account">
+          Аккаунт
+        </Link>
       )}
     </header>
   );

@@ -16,7 +16,7 @@
   column-gap: 30px;
   align-items: center;
 }
-.header__link{
+.header__link {
   text-decoration: none;
 }
 .header__link_type_signup {
@@ -31,6 +31,17 @@
   background: #3ddc84;
   color: #000;
   font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+}
+.header__link_type_account {
+  padding: 8px 20px;
+  border-radius: 20px;
+  background: #313131;
+  color: #fff;
+  text-align: center;
+  font-family: Inter;
+  font-size: 14px;
   font-weight: 500;
   line-height: 16px;
 }
