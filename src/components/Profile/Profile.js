@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Profile.css";
 
-function Profile() {
+function Profile(props) {
   return (
     <section className="profile">
       <h2 className="profile__title">Привет, Игорь!</h2>
@@ -12,6 +12,11 @@ function Profile() {
           <label
             className="profile__form-label"
             htmlFor="profile__form-input_type_name"
+            style={
+              props.isActive
+                ? {}
+                : {pointerEvents: "none"}
+            }
           >
             Имя
           </label>
@@ -20,14 +25,24 @@ function Profile() {
             id="profile__form-input_type_name"
             type="text"
             name="name"
-            value={"Игорь"}
+            defaultValue={"Игорь"}
             required
+            style={
+              props.isActive
+                ? {}
+                : {pointerEvents: "none"}
+            }
           />
         </fieldset>
         <fieldset className="profile__form-field">
           <label
             className="profile__form-label"
             htmlFor="profile__form-input_type_email"
+            style={
+              props.isActive
+                ? {}
+                : {pointerEvents: "none"}
+            }
           >
             E-mail
           </label>
@@ -36,16 +51,29 @@ function Profile() {
             id="profile__form-input_type_email"
             type="email"
             name="name"
-            value={"pochta@yandex.ru"}
+            defaultValue={"pochta@yandex.ru"}
             required
+            style={
+              props.isActive
+                ? {}
+                : {pointerEvents: "none"}
+            }
           />
         </fieldset>
-        <button type="submit" className="profile__form-submit">
-          Редактировать
-        </button>
-        <Link className="profile__out-link" to="/">
-          Выйти из аккаунта
-        </Link>
+        {props.isActive ? (
+          <button type="submit" className="profile__form-submit" onClick={props.onEditButtonClick}>
+            Сохранить
+          </button>
+        ) : (
+          <>
+            <button type="button" className="profile__form-edit" onClick={props.onEditButtonClick}>
+              Редактировать
+            </button>
+            <Link className="profile__out-link" to="/">
+              Выйти из аккаунта
+            </Link>
+          </>
+        )}
       </form>
     </section>
   );

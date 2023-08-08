@@ -58,7 +58,7 @@
   font-weight: 400;
   line-height: normal;
 }
-.profile__form-submit {
+.profile__form-edit {
   cursor: pointer;
   margin: 220px 0 0;
   padding: 0;
@@ -68,6 +68,20 @@
   text-align: center;
   font-size: 13px;
   font-weight: 400;
+  line-height: normal;
+}
+.profile__form-submit {
+  cursor: pointer;
+  margin-top: 223px;
+  width: 100%;
+  border: none;
+  padding: 13px 0 15px;
+  border-radius: 3px;
+  background: #4285f4;
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
   line-height: normal;
 }
 .profile__out-link {

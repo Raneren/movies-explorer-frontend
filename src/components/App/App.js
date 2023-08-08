@@ -11,6 +11,13 @@ import SavedMovies from "../SavedMovies/SavedMovies";
 import "./App.css";
 
 function App() {
+  const [isEditFormActive, setIsEditFormActive] = React.useState(false);
+
+  //функция активации редактирования профиля
+  function handleEditButtonClick() {
+    isEditFormActive ? setIsEditFormActive(false) : setIsEditFormActive(true);
+  }
+
   return (
     <div className="page">
       <Header />
@@ -18,7 +25,15 @@ function App() {
         <Route path="/" element={<Main />} />
         <Route path="/movies" element={<Movies />} />
         <Route path="/saved-movies" element={<SavedMovies />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route
+          path="/profile"
+          element={
+            <Profile
+              isActive={isEditFormActive}
+              onEditButtonClick={handleEditButtonClick}
+            />
+          }
+        />
         <Route path="/sign-in" element={<Login />} />
         <Route path="/sign-up" element={<Register />} />
       </Routes>
