@@ -47,7 +47,7 @@ function Register() {
           <input
             className="register__form-input register__form-input_type_password"
             id="register__form-input_type_password"
-            type="text"
+            type="password"
             name="password"
             required
           />
