@@ -50,7 +50,7 @@ function Profile(props) {
             className="profile__form-input profile__form-input_type_email"
             id="profile__form-input_type_email"
             type="email"
-            name="name"
+            name="email"
             defaultValue={"pochta@yandex.ru"}
             required
             style={

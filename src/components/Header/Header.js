@@ -1,32 +1,79 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Routes, Route, Link, useLocation } from "react-router-dom";
 import logo from "../../images/logo.svg";
 import Navigation from "../Navigation/Navigation";
 import "./Header.css";
 function Header() {
   const location = useLocation();
+  console.log(location);
   return (
-    <header className="header">
+    <header className={`header ${location.pathname==="/sign-up"&&"header_sign-up"}`}>
       <Link to="/" className="header__link">
         <img className="header__logo" src={logo} alt="Логотип" />
       </Link>
-      {(location.pathname === "/movies" ||
-        location.pathname === "/saved-movies" ||
-        location.pathname === "/profile") && <Navigation />}
-      {location.pathname === "/" ? (
-        <div className="header__links">
-          <Link to="/sign-up" className="header__link header__link_type_signup">
-            Регистрация
-          </Link>
-          <Link to="/sign-in" className="header__link header__link_type_signin">
-            Войти
-          </Link>
-        </div>
-      ) : (
-        <Link to="/profile" className="header__link header__link_type_account">
-          Аккаунт
-        </Link>
-      )}
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div className="header__links">
+              <Link
+                to="/sign-up"
+                className="header__link header__link_type_signup"
+              >
+                Регистрация
+              </Link>
+              <Link
+                to="/sign-in"
+                className="header__link header__link_type_signin"
+              >
+                Войти
+              </Link>
+            </div>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <>
+              <Navigation />
+              <Link
+                to="/profile"
+                className="header__link header__link_type_account"
+              >
+                Аккаунт
+              </Link>
+            </>
+          }
+        />
+        <Route
+          path="/saved-movies"
+          element={
+            <>
+              <Navigation />
+              <Link
+                to="/profile"
+                className="header__link header__link_type_account"
+              >
+                Аккаунт
+              </Link>
+            </>
+          }
+        />
+        <Route
+          path="/movies"
+          element={
+            <>
+              <Navigation />
+              <Link
+                to="/profile"
+                className="header__link header__link_type_account"
+              >
+                Аккаунт
+              </Link>
+            </>
+          }
+        />
+      </Routes>
     </header>
   );
 }

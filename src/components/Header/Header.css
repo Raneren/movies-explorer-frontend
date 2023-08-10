@@ -11,6 +11,12 @@
   font-family: Inter, Arial, Helvetica, sans-serif;
   font-style: normal;
 }
+.header_sign-up {
+  padding: 0;
+  margin: 70px 0 37px;
+  min-height: 100%;
+  max-width: 396px;
+}
 .header__links {
   display: flex;
   column-gap: 30px;
