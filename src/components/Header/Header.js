@@ -5,9 +5,8 @@ import Navigation from "../Navigation/Navigation";
 import "./Header.css";
 function Header() {
   const location = useLocation();
-  console.log(location);
   return (
-    <header className={`header ${location.pathname==="/sign-up"&&"header_sign-up"}`}>
+    <header className={`header ${(location.pathname==="/sign-up"||location.pathname==="/sign-in")&&"header_over-form"}`}>
       <Link to="/" className="header__link">
         <img className="header__logo" src={logo} alt="Логотип" />
       </Link>

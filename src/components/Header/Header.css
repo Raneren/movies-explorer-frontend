@@ -11,9 +11,9 @@
   font-family: Inter, Arial, Helvetica, sans-serif;
   font-style: normal;
 }
-.header_sign-up {
+.header_over-form {
   padding: 0;
-  margin: 70px 0 37px;
+  margin: 70px 0 0;
   min-height: 100%;
   max-width: 396px;
 }

@@ -1,0 +1,27 @@
+.form-field {
+    margin: 0;
+    padding: 0;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+  }
+  .form-field:not(:first-of-type){
+    margin-top: 20px;
+  }
+  .form-field__label {
+    color: #8b8b8b;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: normal;
+  }
+  .form-field__input {
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    background: #2f2f2f;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: normal;
+  }
