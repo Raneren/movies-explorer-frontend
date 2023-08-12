@@ -8,6 +8,7 @@ import Register from "../Register/Register";
 import Movies from "../Movies/Movies";
 import Profile from "../Profile/Profile";
 import SavedMovies from "../SavedMovies/SavedMovies";
+import PageNotFound from "../PageNotFound/PageNotFound";
 import "./App.css";
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
         />
         <Route path="/sign-in" element={<Login />} />
         <Route path="/sign-up" element={<Register />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
       <Footer />
     </div>

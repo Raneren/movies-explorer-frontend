@@ -11,7 +11,7 @@ function Register() {
         formName={"register"}
         buttonText={"Зарегистрироваться"}
         linkDescription={"Уже зарегистрированы?"}
-        linkPatch={"/sign-in"}
+        linkPach={"/sign-in"}
         linkText={"Войти"}
         children={
           <>

@@ -11,7 +11,7 @@ function Login() {
         formName={"login"}
         buttonText={"Войти"}
         linkDescription={"Ещё не зарегистрированы?"}
-        linkPatch={"/sign-up"}
+        linkPach={"/sign-up"}
         linkText={"Регистрация"}
         children={
           <>

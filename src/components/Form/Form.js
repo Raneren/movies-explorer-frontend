@@ -15,7 +15,7 @@ function Form(props) {
         </button>
         <div className="form__link-container">
           <p className="form__link-description">{props.linkDescription}</p>
-          <Link to={props.linkPatch} className="form__link">
+          <Link to={props.linkPach} className="form__link">
             {props.linkText}
           </Link>
         </div>
