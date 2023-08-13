@@ -1,16 +1,26 @@
 import React from "react";
 import "./Navigation.css";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Navigation() {
   return (
     <div className="navigation">
-      <Link className="navigation__link" to="/movies">
+      <NavLink
+        className={({ isActive }) =>
+          `navigation__link ${isActive ? "navigation__link_active" : ""}`
+        }
+        to="/movies"
+      >
         Фильмы
-      </Link>
-      <Link className="navigation__link" to="/saved-movies">
+      </NavLink>
+      <NavLink
+        className={({ isActive }) =>
+          `navigation__link ${isActive ? "navigation__link_active" : ""}`
+        }
+        to="/saved-movies"
+      >
         Сохранённые фильмы
-      </Link>
+      </NavLink>
     </div>
   );
 }

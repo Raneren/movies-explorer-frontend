@@ -26,6 +26,7 @@
   width: 36px;
   height: 20px;
   background: url(../../../images/smalltumboff.svg) no-repeat center;
+  transition: background 0.1s ease-in-out;
 }
 .filter-checkbox__input {
   visibility: hidden;

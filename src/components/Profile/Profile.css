@@ -69,7 +69,12 @@
   font-size: 13px;
   font-weight: 400;
   line-height: normal;
+  transition: opacity 0.4s ease-in-out;
 }
+.profile__form-edit:hover {
+  opacity: 0.8;
+}
+
 .profile__form-submit {
   cursor: pointer;
   margin-top: 223px;
@@ -83,6 +88,10 @@
   font-size: 14px;
   font-weight: 500;
   line-height: normal;
+  transition: opacity 0.4s ease-in-out;
+}
+.profile__form-submit:hover {
+  opacity: 0.8;
 }
 .profile__out-link {
   margin-top: 16px;
@@ -92,4 +101,8 @@
   font-size: 13px;
   font-weight: 500;
   line-height: normal;
+  transition: opacity 0.4s ease-in-out;
+}
+.profile__out-link:hover {
+  opacity: 0.7;
 }

@@ -1,16 +1,23 @@
 .navigation {
   position: absolute;
-  left: calc(50% - (212px/2));
+  left: calc(50% - (212px / 2));
   display: flex;
   column-gap: 16px;
   text-align: right;
   font-family: Inter, Arial, Helvetica, sans-serif;
   font-size: 13px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 18px;
 }
 .navigation__link {
   text-decoration: none;
   color: #fff;
+  transition: opacity 0.4s ease-in-out font-weight 0.4s ease-in-out;
+}
+.navigation__link_active {
+  font-weight: 500;
+}
+.navigation__link:hover {
+  opacity: 0.7;
 }

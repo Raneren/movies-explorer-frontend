@@ -21,25 +21,69 @@ function App() {
 
   return (
     <div className="page">
-      <Header />
       <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/movies" element={<Movies />} />
-        <Route path="/saved-movies" element={<SavedMovies />} />
+        <Route
+          path="/"
+          element={
+            <>
+              <Header />
+              <Main />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/movies"
+          element={
+            <>
+              <Header />
+              <Movies />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/saved-movies"
+          element={
+            <>
+              <Header />
+              <SavedMovies />
+              <Footer />
+            </>
+          }
+        />
         <Route
           path="/profile"
           element={
-            <Profile
-              isActive={isEditFormActive}
-              onEditButtonClick={handleEditButtonClick}
-            />
+            <>
+              <Header />
+              <Profile
+                isActive={isEditFormActive}
+                onEditButtonClick={handleEditButtonClick}
+              />
+            </>
           }
         />
-        <Route path="/sign-in" element={<Login />} />
-        <Route path="/sign-up" element={<Register />} />
+        <Route
+          path="/sign-in"
+          element={
+            <>
+              <Header />
+              <Login />
+            </>
+          }
+        />
+        <Route
+          path="/sign-up"
+          element={
+            <>
+              <Header />
+              <Register />
+            </>
+          }
+        />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
-      <Footer />
     </div>
   );
 }

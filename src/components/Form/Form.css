@@ -32,6 +32,10 @@
   font-size: 14px;
   font-weight: 500;
   line-height: normal;
+  transition: opacity 0.4s ease-in-out;
+}
+.form__submit-btn:hover{
+  opacity: 0.8;
 }
 .form__link-container {
   align-self: center;
@@ -53,4 +57,8 @@
   font-size: 14px;
   font-weight: 400;
   line-height: normal;
+  transition: opacity 0.4s ease-in-out;
+}
+.form__link:hover{
+  opacity: 0.7;
 }
