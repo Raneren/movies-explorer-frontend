@@ -58,6 +58,17 @@
     width: 21px;
     height: 21px;
 }
+.movies-card__saved {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+  background: url(../../../images/saved-icon.svg) no-repeat;
+  width: 21px;
+  height: 21px;
+}
 .movies-card__photo{
     cursor: pointer;
     border-radius: 7px;

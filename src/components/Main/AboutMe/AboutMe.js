@@ -1,5 +1,5 @@
 import React from "react";
-import photo from "../../../images/photo.png";
+import photo from "../../../images/photo.jpeg";
 import "./AboutMe.css";
 
 function AboutMe() {
@@ -24,7 +24,7 @@ function AboutMe() {
             Github
           </a>
         </div>
-        <img className="aabout-me__photo" src={photo} alt="фотография меня" />
+        <img className="about-me__photo" src={photo} alt="фотография меня" />
       </div>
     </div>
   );

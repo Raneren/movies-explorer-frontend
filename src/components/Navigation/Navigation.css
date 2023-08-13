@@ -13,7 +13,7 @@
 .navigation__link {
   text-decoration: none;
   color: #fff;
-  transition: opacity 0.4s ease-in-out font-weight 0.4s ease-in-out;
+  transition: opacity 0.4s ease-in-out, font-weight 0.4s ease-in-out;
 }
 .navigation__link_active {
   font-weight: 500;

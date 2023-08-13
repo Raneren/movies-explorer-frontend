@@ -15,6 +15,7 @@
   font-size: 22px;
   line-height: normal;
   letter-spacing: -0.88px;
+  font-weight: 400;
 }
 .about-poject__text-container {
   margin-top: 23px;
@@ -32,6 +33,7 @@
   font-size: 20px;
   line-height: normal;
   letter-spacing: -0.8px;
+  font-weight: 400;
 }
 .about-poject__paragraph {
   margin: 26px 0 0;
@@ -70,4 +72,22 @@
   font-size: 14px;
   font-weight: 500;
   line-height: 17px;
+}
+@media screen and (max-width: 768px) {
+  .about-poject {
+    margin-top: 90px;
+    max-width: calc(100% - 100px);
+    padding-bottom: 90px;
+  }
+  .about-poject__text-container {
+    column-gap: 30px;
+  }
+  .about-poject__paragraph {
+    margin: 22px 0 0;
+    font-size: 12px;
+    line-height: 18px;
+  }
+  .about-poject__scheme {
+    margin-top: 93px;
+  }
 }
