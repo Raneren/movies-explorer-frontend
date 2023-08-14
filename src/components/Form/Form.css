@@ -1,7 +1,7 @@
 .form {
   display: flex;
   flex-direction: column;
-  min-height: 522px;
+  min-height: 520px;
   justify-content: space-between;
 }
 .form__top-container {
@@ -15,7 +15,7 @@
   flex-direction: column;
 }
 .form__title {
-  margin: 40px 0 38px;
+  margin: 37px 0 40px;
   color: #fff;
   font-size: 24px;
   font-weight: 500;
@@ -39,7 +39,7 @@
 }
 .form__link-container {
   align-self: center;
-  margin-top: 18px;
+  margin-top: 16px;
   display: flex;
   column-gap: 6px;
 }

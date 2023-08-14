@@ -78,4 +78,9 @@
   .header__menu-button {
     display: block;
   }
+  .header_over-form{
+    margin: 232px 0 0;
+    padding: 0;
+    max-width: 396px;
+  }
 }

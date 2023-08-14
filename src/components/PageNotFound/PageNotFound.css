@@ -11,9 +11,10 @@
   margin: 246px 0 0;
   font-size: 140px;
   line-height: normal;
+  font-weight: 400;
 }
 .page-not-found__subtitle {
-  margin: 5px 0 184px;
+  margin: 5px 0 182px;
   font-size: 16px;
   line-height: normal;
 }
@@ -22,4 +23,9 @@
   color: #4285f4;
   font-size: 14px;
   line-height: normal;
+}
+@media screen and (max-width: 768px) {
+  .page-not-found__title {
+    margin: 408px 0 0;
+  }
 }

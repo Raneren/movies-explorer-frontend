@@ -15,6 +15,7 @@ function FormFieldset(props) {
         id={`form-field__input_type_${props.inputName}`}
         type={props.inputType}
         name={props.inputName}
+        placeholder={props.labelText}
         required
       />
     </fieldset>
