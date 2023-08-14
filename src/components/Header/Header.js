@@ -3,8 +3,17 @@ import { Link, useLocation } from "react-router-dom";
 import logo from "../../images/logo.svg";
 import Navigation from "../Navigation/Navigation";
 import "./Header.css";
+import DropDownMenu from "../DropDownMenu/DropDownMenu";
 function Header() {
+  const [isDropDownMenuActive, setIsDropDownMenuActive] = React.useState(false);
   const location = useLocation();
+
+  //функция активации выпадающего меню
+  function handleDropDownMenuClick() {
+    isDropDownMenuActive
+      ? setIsDropDownMenuActive(false)
+      : setIsDropDownMenuActive(true);
+  }
   return (
     <header
       className={`header ${
@@ -49,6 +58,19 @@ function Header() {
           </Link>
         </>
       )}
+      {(location.pathname === "/movies" ||
+        location.pathname === "/saved-movies" ||
+        location.pathname === "/profile") && (
+        <button
+          className="header__menu-button"
+          type="button"
+          onClick={handleDropDownMenuClick}
+        ></button>
+      )}
+      <DropDownMenu
+        isOpen={isDropDownMenuActive}
+        onDropDownMenuClick={handleDropDownMenuClick}
+      />
     </header>
   );
 }

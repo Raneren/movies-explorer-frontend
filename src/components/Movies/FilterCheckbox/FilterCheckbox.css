@@ -40,3 +40,8 @@
   height: 20px;
   background: url(../../../images/smalltumbon.svg) no-repeat center;
 }
+@media screen and (max-width: 768px) {
+  .filter-checkbox {
+    margin: 41px 0 39px;
+  }
+}

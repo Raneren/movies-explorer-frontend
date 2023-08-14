@@ -36,3 +36,13 @@
 .movies-card-list__button:hover {
   opacity: 0.8;
 }
+@media screen and (max-width: 768px) {
+  .movies-card-list {
+    max-width: calc(100% - 60px);
+    padding-top: 80px;
+  }
+  .movies-card-list__container{
+    grid-template-columns: repeat(auto-fit, 339px);
+    gap: 47px 30px;
+  }
+}
