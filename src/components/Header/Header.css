@@ -44,7 +44,7 @@
   font-weight: 500;
   line-height: 16px;
 }
-.header__link_type_account {
+.header__link_type_profile {
   padding: 8px 20px;
   border-radius: 20px;
   background: #313131;
@@ -78,9 +78,24 @@
   .header__menu-button {
     display: block;
   }
-  .header_over-form{
+  .header_over-form {
     margin: 232px 0 0;
     padding: 0;
     max-width: 396px;
+  }
+}
+@media screen and (max-width: 450px) {
+  .header {
+    padding: 0 14px;
+  }
+  .header__links{
+    column-gap: 14px;
+  }
+  .header__link_type_signin {
+    padding: 5px 12px;
+    font-size: 10px;
+  }
+  .header__link_type_signup {
+    font-size: 10px;
   }
 }

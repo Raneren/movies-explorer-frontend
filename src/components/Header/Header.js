@@ -40,7 +40,7 @@ function Header() {
           <Navigation />
           <Link
             to="/profile"
-            className="header__link header__link_type_account"
+            className="header__link header__link_type_profile"
           >
             Аккаунт
           </Link>
@@ -52,7 +52,7 @@ function Header() {
           <Navigation />
           <Link
             to="/profile"
-            className="header__link header__link_type_account"
+            className="header__link header__link_type_profile"
           >
             Аккаунт
           </Link>
