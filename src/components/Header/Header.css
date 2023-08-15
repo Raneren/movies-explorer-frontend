@@ -1,6 +1,5 @@
 .header {
   position: relative;
-  box-sizing: border-box;
   width: 100%;
   min-height: 74px;
   max-width: 1280px;
@@ -12,9 +11,7 @@
   font-style: normal;
 }
 .header_over-form {
-  padding: 0;
-  margin: 70px 0 0;
-  min-height: 100%;
+  padding: 70px 0 0;
   max-width: 396px;
 }
 .header__links {
@@ -60,6 +57,7 @@
   border: none;
   padding: 0;
   background: url(../../images/menu-button.svg) no-repeat center;
+  background-size: cover;
   width: 44px;
   height: 44px;
   display: none;
@@ -72,21 +70,25 @@
   .header {
     padding: 0 30px;
   }
-  .header__link_type_account {
+  .header__link_type_profile {
     display: none;
   }
   .header__menu-button {
     display: block;
   }
   .header_over-form {
-    margin: 232px 0 0;
-    padding: 0;
+    padding: 232px 0 0;
     max-width: 396px;
   }
 }
 @media screen and (max-width: 450px) {
   .header {
     padding: 0 14px;
+  }
+  .header_over-form {
+    padding: 56px 0 0;
+    display: flex;
+    justify-content: center;
   }
   .header__links{
     column-gap: 14px;
@@ -97,5 +99,9 @@
   }
   .header__link_type_signup {
     font-size: 10px;
+  }
+  .header__menu-button{
+    width: 40px;
+    height: 42px;
   }
 }

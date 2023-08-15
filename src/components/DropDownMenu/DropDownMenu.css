@@ -81,3 +81,15 @@
 .drop-down-menu__button-close:hover {
   opacity: 0.8;
 }
+@media screen and (max-width: 450px) {
+  .drop-down-menu__container {
+    padding: 144px 0 46px;
+  }
+  .drop-down-menu__list{
+    row-gap: 26px;
+  }
+  .drop-down-menu__button-close{
+    top: 19px;
+    right: 19px;
+  }
+}

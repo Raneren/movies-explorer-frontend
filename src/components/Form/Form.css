@@ -34,7 +34,7 @@
   line-height: normal;
   transition: opacity 0.4s ease-in-out;
 }
-.form__submit-btn:hover{
+.form__submit-btn:hover {
   opacity: 0.8;
 }
 .form__link-container {
@@ -59,6 +59,26 @@
   line-height: normal;
   transition: opacity 0.4s ease-in-out;
 }
-.form__link:hover{
+.form__link:hover {
   opacity: 0.7;
+}
+@media screen and (max-width: 450px) {
+  .form {
+    box-sizing: border-box;
+    padding: 0 30px 30px;
+    min-height: 684px;
+  }
+  .form__title {
+    margin: 48px 0 80px;
+    text-align: center;
+  }
+  .form__link-container {
+    margin-top: 14px;
+  }
+  .form__link-description {
+    font-size: 12px;
+  }
+  .form__link {
+    font-size: 12px;
+  }
 }

@@ -29,3 +29,16 @@
     margin: 408px 0 0;
   }
 }
+@media screen and (max-width: 450px) {
+  .page-not-found__title {
+    margin: 329px 0 0;
+    font-size: 80px;
+  }
+  .page-not-found__subtitle {
+    margin: 10px 0 282px;
+    font-size: 12px;
+  }
+  .page-not-found__link{
+    font-size: 12px;
+  }
+}

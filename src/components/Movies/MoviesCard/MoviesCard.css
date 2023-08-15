@@ -90,7 +90,22 @@
   .movies-card__info {
     padding: 0;
   }
-  .movies-card__photo{
+  .movies-card__photo {
     height: 190px;
+  }
+}
+@media screen and (max-width: 450px) {
+  .movies-card {
+    row-gap: 16px;
+  }
+  .movies-card__photo {
+    height: 168px;
+  }
+  .movies-card__name {
+    font-size: 12px;
+  }
+  .movies-card__button {
+    top: 10px;
+    right: 10px;
   }
 }

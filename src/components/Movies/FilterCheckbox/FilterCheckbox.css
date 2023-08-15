@@ -45,3 +45,12 @@
     margin: 41px 0 39px;
   }
 }
+@media screen and (max-width: 450px) {
+  .filter-checkbox {
+    max-width: 148px;
+    margin: 46px 0 40px;
+  }
+  .filter-checkbox__text {
+    font-size: 11px;
+  }
+}

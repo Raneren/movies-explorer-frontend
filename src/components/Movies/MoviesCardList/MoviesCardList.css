@@ -46,3 +46,17 @@
     gap: 47px 30px;
   }
 }
+@media screen and (max-width: 450px) {
+  .movies-card-list {
+    max-width: calc(100% - 20px);
+    padding-top: 50px;
+  }
+  .movies-card-list__container{
+    grid-template-columns: repeat(auto-fit, 300px);
+    row-gap: 39px;
+  }
+  .movies-card-list__button{
+    width: 240px;
+  }
+}
+

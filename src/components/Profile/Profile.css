@@ -110,7 +110,27 @@
   .profile {
     margin-top: 236px;
   }
-  .profile__form{
+  .profile__form {
     margin-top: 96px;
+  }
+}
+@media screen and (max-width: 450px) {
+  .profile {
+    box-sizing: border-box;
+    margin-top: 70px;
+    padding: 0 30px;
+  }
+  .profile__form {
+    margin-top: 80px;
+  }
+  .profile__form-edit {
+    margin: 379px 0 0;
+    font-size: 12px;
+  }
+  .profile__out-link{
+    font-size: 12px;
+  }
+  .profile__form-submit{
+    margin: 379px 0 0;
   }
 }

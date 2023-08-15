@@ -42,3 +42,11 @@
     max-width: calc(100% - 60px);
   }
 }
+@media screen and (max-width: 450px) {
+  .search-form {
+    max-width: calc(100% - 28px);
+  }
+  .search-form__input{
+     padding: 13px 13px;
+  }
+}
