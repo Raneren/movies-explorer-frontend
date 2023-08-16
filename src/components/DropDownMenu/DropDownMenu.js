@@ -5,7 +5,9 @@ import "./DropDownMenu.css";
 function DropDownMenu(props) {
   return (
     <div
-      className={`drop-down-menu ${props.isOpen && "drop-down-menu_active"}`}
+      className={`drop-down-menu ${
+        props.isOpen ? "drop-down-menu_active" : ""
+      }`}
     >
       <div className="drop-down-menu__container">
         <ul className="drop-down-menu__list">

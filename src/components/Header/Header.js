@@ -17,9 +17,9 @@ function Header() {
   return (
     <header
       className={`header ${
-        (location.pathname === "/sign-up" ||
-          location.pathname === "/sign-in") &&
-        "header_over-form"
+        location.pathname === "/sign-up" || location.pathname === "/sign-in"
+          ? "header_over-form"
+          : ""
       }`}
     >
       <Link to="/" className="header__link">

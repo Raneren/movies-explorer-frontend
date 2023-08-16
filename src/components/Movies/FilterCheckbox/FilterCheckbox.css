@@ -1,14 +1,10 @@
 .filter-checkbox {
-  display: flex;
-  margin: 28px 0 40px;
+  margin: 29px 0 40px;
   width: 100%;
   max-width: 156px;
-  justify-content: space-between;
-}
-.filter-checkbox__text {
-  margin: 0;
   color: #fff;
   font-family: Inter, Arial, Helvetica, sans-serif;
+  text-align: right;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
@@ -21,7 +17,7 @@
 .filter-checkbox__label::after {
   position: absolute;
   left: -48px;
-  bottom: -2px;
+  bottom: -3px;
   content: "";
   width: 36px;
   height: 20px;
@@ -50,7 +46,7 @@
     max-width: 148px;
     margin: 46px 0 40px;
   }
-  .filter-checkbox__text {
+  .filter-checkbox {
     font-size: 11px;
   }
 }

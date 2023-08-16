@@ -13,7 +13,7 @@ function FilterCheckbox() {
         className="filter-checkbox__label"
         htmlFor="filter-checkbox__input"
       >
-        <p className="filter-checkbox__text">Короткометражки</p>
+        Короткометражки
       </label>
     </div>
   );

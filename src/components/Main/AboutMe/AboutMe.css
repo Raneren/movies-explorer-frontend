@@ -16,7 +16,6 @@
   font-weight: 400;
 }
 .about-me__container {
-  position: relative;
   margin-top: 23px;
   padding-top: 66px;
   border-top: 1px solid #dadada;
@@ -38,6 +37,7 @@
   min-width: 292px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 .about-me__name {
   margin: 0;
@@ -59,9 +59,6 @@
   line-height: 22px;
 }
 .about-me__link {
-  position: absolute;
-  left: 0;
-  bottom: 0;
   color: #fff;
   text-decoration: none;
   font-size: 14px;
@@ -106,7 +103,6 @@
   }
   .about-me__link{
     margin-top: 71px;
-    position: inherit;
   }
 }
 @media screen and (max-width: 450px) {

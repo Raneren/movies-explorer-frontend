@@ -83,7 +83,7 @@
   visibility: visible;
   opacity: 1;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 890px) {
   .movies-card {
     row-gap: 25px;
   }
@@ -94,7 +94,7 @@
     height: 190px;
   }
 }
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 767px) {
   .movies-card {
     row-gap: 16px;
   }

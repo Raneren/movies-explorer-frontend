@@ -6,7 +6,6 @@ function Profile(props) {
   return (
     <section className="profile">
       <h2 className="profile__title">Привет, Игорь!</h2>
-
       <form className="profile__form" name="profile__form" method="post">
         <fieldset className="profile__form-field">
           <label

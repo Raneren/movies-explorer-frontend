@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 function Navigation() {
   return (
-    <div className="navigation">
+    <nav className="navigation">
       <NavLink
         className={({ isActive }) =>
           `navigation__link ${isActive ? "navigation__link_active" : ""}`
@@ -21,7 +21,7 @@ function Navigation() {
       >
         Сохранённые фильмы
       </NavLink>
-    </div>
+    </nav>
   );
 }
 
