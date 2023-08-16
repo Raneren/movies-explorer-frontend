@@ -27,7 +27,7 @@ function Register() {
             />
             <FormFieldset
               inputName={"password"}
-              labelText={"Прароль"}
+              labelText={"Пароль"}
               inputType={"password"}
             />
           </>

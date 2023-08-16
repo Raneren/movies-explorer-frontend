@@ -25,3 +25,6 @@
     font-weight: 400;
     line-height: normal;
   }
+  .form-field__input_error{
+    color: #EE3465;
+  }
