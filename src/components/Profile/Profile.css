@@ -1,0 +1,136 @@
+.profile {
+  margin-top: 74px;
+  width: 100%;
+  max-width: 410px;
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-style: normal;
+  color: #fff;
+}
+.profile__title {
+  margin: 0;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: normal;
+}
+.profile__form {
+  margin-top: 123px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.profile__form-field {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+}
+.profile__form-field:not(:first-of-type) {
+  margin-top: 34px;
+}
+.profile__form-field:not(:first-of-type)::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background: #424242;
+  top: -17px;
+  left: 0;
+}
+.profile__form-label {
+  display: flex;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: normal;
+  cursor: pointer;
+}
+.profile__form-input {
+  padding: 0;
+  background: none;
+  border: none;
+  color: #fff;
+  text-align: right;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: normal;
+}
+.profile__form-edit {
+  cursor: pointer;
+  margin: 220px 0 0;
+  padding: 0;
+  border: none;
+  background: none;
+  color: #fff;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: normal;
+  transition: opacity 0.4s ease-in-out;
+}
+.profile__form-edit:hover {
+  opacity: 0.8;
+}
+
+.profile__form-submit {
+  cursor: pointer;
+  margin-top: 223px;
+  width: 100%;
+  border: none;
+  padding: 13px 0 15px;
+  border-radius: 3px;
+  background: #4285f4;
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: normal;
+  transition: opacity 0.4s ease-in-out;
+}
+.profile__form-submit:hover {
+  opacity: 0.8;
+}
+.profile__out-link {
+  margin-top: 16px;
+  text-decoration: none;
+  color: #ee3465;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: normal;
+  transition: opacity 0.4s ease-in-out;
+}
+.profile__out-link:hover {
+  opacity: 0.7;
+}
+@media screen and (max-width: 768px) {
+  .profile {
+    margin-top: 236px;
+  }
+  .profile__form {
+    margin-top: 96px;
+  }
+}
+@media screen and (max-width: 450px) {
+  .profile {
+    box-sizing: border-box;
+    margin-top: 70px;
+    padding: 0 30px;
+  }
+  .profile__form {
+    margin-top: 80px;
+  }
+  .profile__form-edit {
+    margin: 379px 0 0;
+    font-size: 12px;
+  }
+  .profile__out-link{
+    font-size: 12px;
+  }
+  .profile__form-submit{
+    margin: 379px 0 0;
+  }
+}

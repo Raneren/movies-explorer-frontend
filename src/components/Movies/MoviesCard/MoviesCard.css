@@ -1,0 +1,111 @@
+.movies-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  row-gap: 14px;
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-style: normal;
+}
+.movies-card__info {
+  padding: 0 15px;
+  display: flex;
+  justify-content: space-between;
+}
+.movies-card__name {
+  margin: 0;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: normal;
+}
+.movies-card__duration {
+  width: 52px;
+  text-align: center;
+  padding: 3px 0;
+  border-radius: 3px;
+  background: #2f2f2f;
+  margin: 0;
+  color: #8b8b8b;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 100%;
+}
+.movies-card__button {
+  cursor: pointer;
+  border: none;
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+}
+.movies-card__button_save {
+  border-radius: 30px;
+  padding: 6px 0;
+  width: 72px;
+  background: #313131;
+  color: #fff;
+  text-align: center;
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 9px;
+}
+.movies-card__button_delete {
+  background: url(../../../images/delete-button.svg) no-repeat;
+  width: 21px;
+  height: 21px;
+}
+.movies-card__saved {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+  background: url(../../../images/saved-icon.svg) no-repeat;
+  width: 21px;
+  height: 21px;
+}
+.movies-card__photo {
+  cursor: pointer;
+  border-radius: 7px;
+  width: 100%;
+  height: 201px;
+  object-fit: cover;
+  object-position: center;
+}
+.movies-card__photo:hover ~ .movies-card__button,
+.movies-card__button:hover {
+  visibility: visible;
+  opacity: 1;
+}
+@media screen and (max-width: 890px) {
+  .movies-card {
+    row-gap: 25px;
+  }
+  .movies-card__info {
+    padding: 0;
+  }
+  .movies-card__photo {
+    height: 190px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .movies-card {
+    row-gap: 16px;
+  }
+  .movies-card__photo {
+    height: 168px;
+  }
+  .movies-card__name {
+    font-size: 12px;
+  }
+  .movies-card__button {
+    top: 10px;
+    right: 10px;
+  }
+}
