@@ -10,15 +10,28 @@ import Profile from "../Profile/Profile";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import PageNotFound from "../PageNotFound/PageNotFound";
 import "./App.css";
+import moviesApi from "../../utils/MoviesApi";
 
 function App() {
   const [isEditFormActive, setIsEditFormActive] = React.useState(false);
-
+  const [movies, setMovies] = React.useState([]);
+  const [isPreloaderActive, setIsPreloaderActive] = React.useState(true);
   //функция активации редактирования профиля
   function handleEditButtonClick() {
     isEditFormActive ? setIsEditFormActive(false) : setIsEditFormActive(true);
   }
-
+  moviesApi
+    .getMovies()
+    .then((movies) => {
+      movies = movies.map((item) => {
+        return item;
+      });
+      setMovies(movies);
+    })
+    .catch((err) => {
+      console.log(`Ошибка: ${err}`);
+    })
+    .finally(() => setIsPreloaderActive(false));
   return (
     <div className="page">
       <Routes>
@@ -37,7 +50,7 @@ function App() {
           element={
             <>
               <Header />
-              <Movies />
+              <Movies movies={movies} preloaderActive={isPreloaderActive} />
               <Footer />
             </>
           }
@@ -89,4 +102,3 @@ function App() {
 }
 
 export default App;
-
