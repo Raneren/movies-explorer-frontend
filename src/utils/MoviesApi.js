@@ -5,7 +5,7 @@ export class MoviesApi {
   _checkResponse(res) {
     return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
   }
-  getMovies = () => {
+  getAllMovies = () => {
     return fetch(this._url, {
       method: "GET",
       headers: {

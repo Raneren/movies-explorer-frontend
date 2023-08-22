@@ -7,7 +7,8 @@ import "./Movies.css";
 function Movies(props) {
   return (
     <section className="movies">
-      <SearchForm />
+      <SearchForm 
+      onSearch={props.onSearch}/>
       {props.preloaderActive ? (
         <Preloader />
       ) : (

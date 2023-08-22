@@ -14,24 +14,32 @@ import moviesApi from "../../utils/MoviesApi";
 
 function App() {
   const [isEditFormActive, setIsEditFormActive] = React.useState(false);
-  const [movies, setMovies] = React.useState([]);
-  const [isPreloaderActive, setIsPreloaderActive] = React.useState(true);
+  const [foundMovies, setFoundMovies] = React.useState([]);
+  const [isPreloaderActive, setIsPreloaderActive] = React.useState(false);
   //функция активации редактирования профиля
   function handleEditButtonClick() {
     isEditFormActive ? setIsEditFormActive(false) : setIsEditFormActive(true);
   }
-  moviesApi
-    .getMovies()
-    .then((movies) => {
-      movies = movies.map((item) => {
-        return item;
-      });
-      setMovies(movies);
-    })
-    .catch((err) => {
-      console.log(`Ошибка: ${err}`);
-    })
-    .finally(() => setIsPreloaderActive(false));
+
+  function handleSearch(movie) {
+    setIsPreloaderActive(true);
+    moviesApi
+      .getAllMovies()
+      .then((movies) => {
+        movies.map((item) => {
+          return item;
+        });
+        setFoundMovies(
+          movies.filter((item) =>
+            item.nameRU.toLowerCase().includes(movie.toLowerCase())
+          )
+        );
+      })
+      .catch((err) => {
+        console.log(`Ошибка: ${err}`);
+      })
+      .finally(() => setIsPreloaderActive(false));
+  }
   return (
     <div className="page">
       <Routes>
@@ -50,7 +58,11 @@ function App() {
           element={
             <>
               <Header />
-              <Movies movies={movies} preloaderActive={isPreloaderActive} />
+              <Movies
+                movies={foundMovies}
+                preloaderActive={isPreloaderActive}
+                onSearch={handleSearch}
+              />
               <Footer />
             </>
           }
