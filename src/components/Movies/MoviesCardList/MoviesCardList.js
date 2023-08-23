@@ -20,14 +20,11 @@ function MoviesCardList(props) {
     if (isDesktop) {
       return setVisibleMovieCount(visibleMovieCount + 3);
     }
-
     if (isTablet) {
       return setVisibleMovieCount(visibleMovieCount + 2);
     }
-
     setVisibleMovieCount(visibleMovieCount + 2);
   }
-  console.log(props.movies.length <= visibleMovieCount);
   return (
     <div className="movies-card-list">
       <div className="movies-card-list__container">
