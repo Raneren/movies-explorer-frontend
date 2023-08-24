@@ -4,13 +4,9 @@ import "./SearchForm.css";
 
 function SearchForm(props) {
   const [searchQuery, setSearchQuery] = React.useState("");
-  const [isChecked, setIsChecked] = React.useState(false);
 
   function handleChangeSearchQuery(evt) {
     setSearchQuery(evt.target.value);
-  }
-  function handleChangeFilterCheckbox() {
-    setIsChecked(!isChecked);
   }
   function handleSearchSubmit(evt) {
     evt.preventDefault();
@@ -29,8 +25,8 @@ function SearchForm(props) {
         <button className="search-form__button" type="submit"></button>
       </form>
       <FilterCheckbox 
-      isChecked ={isChecked}
-      onChange={handleChangeFilterCheckbox}/>
+      isChecked ={props.isChecked}
+      onChange={props.onChange}/>
     </>
   );
 }

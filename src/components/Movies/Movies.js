@@ -8,7 +8,9 @@ function Movies(props) {
   return (
     <section className="movies">
       <SearchForm 
-      onSearch={props.onSearch}/>
+      onSearch={props.onSearch}
+      isCheaked={props.isCheaked}
+      onChange={props.onChange}/>
       {props.preloaderActive ? (
         <Preloader />
       ) : (

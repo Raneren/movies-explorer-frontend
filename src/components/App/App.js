@@ -16,11 +16,14 @@ function App() {
   const [isEditFormActive, setIsEditFormActive] = React.useState(false);
   const [foundMovies, setFoundMovies] = React.useState([]);
   const [isPreloaderActive, setIsPreloaderActive] = React.useState(false);
+  const [isChecked, setIsChecked] = React.useState(false);
   //функция активации редактирования профиля
   function handleEditButtonClick() {
     isEditFormActive ? setIsEditFormActive(false) : setIsEditFormActive(true);
   }
-
+  function handleChangeFilterCheckbox() {
+    setIsChecked(!isChecked);
+  }
   function handleSearch(movie) {
     setIsPreloaderActive(true);
     moviesApi
@@ -31,7 +34,10 @@ function App() {
         });
         setFoundMovies(
           movies.filter((item) =>
-            item.nameRU.toLowerCase().includes(movie.toLowerCase())
+            isChecked
+              ? item.nameRU.toLowerCase().includes(movie.toLowerCase()) &
+                (item.duration <= 40)
+              : item.nameRU.toLowerCase().includes(movie.toLowerCase())
           )
         );
       })
@@ -62,6 +68,8 @@ function App() {
                 movies={foundMovies}
                 preloaderActive={isPreloaderActive}
                 onSearch={handleSearch}
+                isChecked={isChecked}
+                onChange={handleChangeFilterCheckbox}
               />
               <Footer />
             </>
