@@ -17,6 +17,10 @@ function App() {
   const [foundMovies, setFoundMovies] = React.useState([]);
   const [isPreloaderActive, setIsPreloaderActive] = React.useState(false);
   const [isChecked, setIsChecked] = React.useState(false);
+  React.useEffect(() => {
+    setFoundMovies(JSON.parse(localStorage.foundMovies));
+    setIsChecked(JSON.parse(localStorage.isChecked));
+  }, []);
   //функция активации редактирования профиля
   function handleEditButtonClick() {
     isEditFormActive ? setIsEditFormActive(false) : setIsEditFormActive(true);
@@ -32,20 +36,26 @@ function App() {
         movies.map((item) => {
           return item;
         });
-        setFoundMovies(
-          movies.filter((item) =>
-            isChecked
-              ? item.nameRU.toLowerCase().includes(movie.toLowerCase()) &
-                (item.duration <= 40)
-              : item.nameRU.toLowerCase().includes(movie.toLowerCase())
-          )
+        const foundMovies = movies.filter((item) =>
+          isChecked
+            ? item.nameRU.toLowerCase().includes(movie.toLowerCase()) &
+              (item.duration <= 40)
+            : item.nameRU.toLowerCase().includes(movie.toLowerCase())
         );
+        return foundMovies;
+      })
+      .then((foundMovies) => {
+        setFoundMovies(foundMovies);
+        localStorage.setItem("foundMovies", JSON.stringify(foundMovies));
+        localStorage.setItem("searchQuery", movie);
+        localStorage.setItem("isChecked", JSON.stringify(isChecked));
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
       })
       .finally(() => setIsPreloaderActive(false));
   }
+  console.log(moviesApi.getAllMovies());
   return (
     <div className="page">
       <Routes>

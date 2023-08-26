@@ -6,7 +6,7 @@ import { useMediaQuery } from "../../../hooks/useMediaQuery";
 function MoviesCardList(props) {
   const isDesktop = useMediaQuery("(min-width: 1280px)");
   const isTablet = useMediaQuery("(min-width: 650px)");
-//Определяем начальное количество карточек в зависимости от ширины экрана
+  //Определяем начальное количество карточек в зависимости от ширины экрана
   const initialMovieCount = isDesktop ? 12 : isTablet ? 8 : 5;
 
   const [visibleMovieCount, setVisibleMovieCount] =
@@ -28,9 +28,13 @@ function MoviesCardList(props) {
   return (
     <div className="movies-card-list">
       <div className="movies-card-list__container">
-        {props.movies.slice(0, visibleMovieCount).map((item) => (
-          <MoviesCard movie={item} key={item.id} />
-        ))}
+        {props.movies.length > 0
+          ? props.movies
+              .slice(0, visibleMovieCount)
+              .map((item) => <MoviesCard movie={item} key={item.id} />)
+          : props.isSearchActive && (
+              <p className="movies-card__alert">Ничего не найдено</p>
+            )}
       </div>
       {props.movies.length <= visibleMovieCount ? (
         ""
