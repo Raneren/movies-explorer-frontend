@@ -14,7 +14,9 @@ function SearchForm(props) {
     props.setIsSearchActive(true);
   }
   React.useEffect(() => {
+    if (localStorage.searchQuery) {
       setSearchQuery(localStorage.searchQuery);
+    }
   }, []);
   return (
     <>

@@ -16,6 +16,8 @@ function FormFieldset(props) {
         type={props.inputType}
         name={props.inputName}
         placeholder={props.labelText}
+        onChange={props.onChange}
+        value={props.value}
         required
       />
     </fieldset>

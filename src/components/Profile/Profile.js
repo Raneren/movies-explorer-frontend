@@ -68,7 +68,7 @@ function Profile(props) {
             <button type="button" className="profile__form-edit" onClick={props.onEditButtonClick}>
               Редактировать
             </button>
-            <Link className="profile__out-link" to="/">
+            <Link className="profile__out-link" to="/" onClick={props.onSignOut}>
               Выйти из аккаунта
             </Link>
           </>

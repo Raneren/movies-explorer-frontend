@@ -4,7 +4,7 @@ import "./Form.css";
 
 function Form(props) {
   return (
-    <form className="form" name={props.formName} method="post">
+    <form className="form" name={props.formName} method="post" onSubmit={props.onSubmit}>
       <div className="form__top-container">
         <h2 className="form__title">{props.title}</h2>
         {props.children}
