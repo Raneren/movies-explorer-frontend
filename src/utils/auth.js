@@ -1,4 +1,4 @@
-export const baseUrl = "http://api.movies.malinavichus.nomoreparties.co";
+const baseUrl = "https://api.movies.malinavichus.nomoreparties.co";
 
 //Функция для проверки ответа
 function checkResponse(res) {

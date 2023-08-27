@@ -75,7 +75,7 @@ class MainApi {
 }
 //Класс для работы с Api
 const mainApi = new MainApi({
-  baseUrl: "http://api.movies.malinavichus.nomoreparties.co",
+  baseUrl: "https://api.movies.malinavichus.nomoreparties.co",
   headers: {
     authorization: `Bearer ${localStorage.getItem("jwt")}`,
   },
