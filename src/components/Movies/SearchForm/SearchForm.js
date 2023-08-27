@@ -1,8 +1,10 @@
 import React from "react";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
+import { useLocation } from "react-router-dom";
 import "./SearchForm.css";
 
 function SearchForm(props) {
+  const location = useLocation();
   const [searchQuery, setSearchQuery] = React.useState("");
 
   function handleChangeSearchQuery(evt) {
@@ -14,7 +16,7 @@ function SearchForm(props) {
     props.setIsSearchActive(true);
   }
   React.useEffect(() => {
-    if (localStorage.searchQuery) {
+    if (localStorage.searchQuery && location.pathname === "/movies") {
       setSearchQuery(localStorage.searchQuery);
     }
   }, []);

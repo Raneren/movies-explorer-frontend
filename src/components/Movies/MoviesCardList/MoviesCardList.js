@@ -29,7 +29,7 @@ function MoviesCardList(props) {
     <div className="movies-card-list">
       <div className="movies-card-list__container">
         {props.movies.length > 0
-          ? props.movies
+          ? props.foundMovies
               .slice(0, visibleMovieCount)
               .map((item) => (
                 <MoviesCard

@@ -23,11 +23,15 @@ function App() {
   const [isEditFormActive, setIsEditFormActive] = React.useState(false);
   const [foundMovies, setFoundMovies] = React.useState([]);
   const [savedMovies, setSavedMovies] = React.useState([]);
+  const [foundMoviesInSaved, setFoundMoviesInSaved] = React.useState([]);
   const [isPreloaderActive, setIsPreloaderActive] = React.useState(false);
   const [isChecked, setIsChecked] = React.useState(false);
+  const [isCheckedInSaved, setIsCheckedInSaved] = React.useState(false);
 
   const navigate = useNavigate();
-
+  React.useEffect(() => {
+    setFoundMoviesInSaved(savedMovies);
+  }, [savedMovies]);
   React.useEffect(() => {
     if (localStorage.foundMovies) {
       setFoundMovies(JSON.parse(localStorage.foundMovies));
@@ -52,7 +56,7 @@ function App() {
   React.useEffect(() => {
     handleCheckToken();
   }, [loggedIn]);
-  //Получаем данные профиля и карточки фильмов с сервера для авторизованного пользователя
+  //Получаем данные профиля и сохраненные фильмы с сервера для авторизованного пользователя
   React.useEffect(() => {
     if (loggedIn) {
       mainApi
@@ -116,7 +120,6 @@ function App() {
   }
   //функция сохранения карточки фильма
   function handleSaveMovie(movie) {
-    console.log(movie);
     mainApi
       .saveMovie(movie)
       .then((newMovie) => {
@@ -139,6 +142,22 @@ function App() {
   function handleChangeFilterCheckbox() {
     setIsChecked(!isChecked);
   }
+  //функция переключения чекбокса в сохраненных фильмах
+  function handleChangeFilterCheckboxInSaved() {
+    setIsCheckedInSaved(!isCheckedInSaved);
+  }
+  //функция поиска фильмов среди сохраненных
+  function handleSearchInSavedMovies(movie) {
+    const foundMovies = savedMovies.filter((item) =>
+      isCheckedInSaved
+        ? (item.nameRU.toLowerCase().includes(movie.toLowerCase()) ||
+            item.nameEN.toLowerCase().includes(movie.toLowerCase())) &
+          (item.duration <= 40)
+        : item.nameRU.toLowerCase().includes(movie.toLowerCase()) ||
+          item.nameEN.toLowerCase().includes(movie.toLowerCase())
+    );
+    setFoundMoviesInSaved(foundMovies);
+  }
   //функция поиска фильмов
   function handleSearch(movie) {
     setIsPreloaderActive(true);
@@ -150,9 +169,11 @@ function App() {
         });
         const foundMovies = movies.filter((item) =>
           isChecked
-            ? item.nameRU.toLowerCase().includes(movie.toLowerCase()) &
+            ? (item.nameRU.toLowerCase().includes(movie.toLowerCase()) ||
+                item.nameEN.toLowerCase().includes(movie.toLowerCase())) &
               (item.duration <= 40)
-            : item.nameRU.toLowerCase().includes(movie.toLowerCase())
+            : item.nameRU.toLowerCase().includes(movie.toLowerCase()) ||
+              item.nameEN.toLowerCase().includes(movie.toLowerCase())
         );
         return foundMovies;
       })
@@ -196,6 +217,7 @@ function App() {
                   isChecked={isChecked}
                   onChange={handleChangeFilterCheckbox}
                   savedMovies={savedMovies}
+                  foundMovies={foundMovies}
                 />
                 <Footer />
               </>
@@ -210,8 +232,12 @@ function App() {
                   loggedIn={loggedIn}
                   element={SavedMovies}
                   movies={savedMovies}
+                  onSearch={handleSearchInSavedMovies}
+                  isChecked={isCheckedInSaved}
+                  onChange={handleChangeFilterCheckboxInSaved}
                   onDelete={handleDeleteMovie}
                   savedMovies={savedMovies}
+                  foundMovies={foundMoviesInSaved}
                 />
                 <Footer />
               </>

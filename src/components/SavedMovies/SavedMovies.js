@@ -4,10 +4,22 @@ import MoviesCardList from "../Movies/MoviesCardList/MoviesCardList";
 import "./SavedMovies.css";
 
 function SavedMovies(props) {
+  const [isSearchActive, setIsSearchActive] = React.useState(false);
   return (
     <section className="saved-movies">
-      <SearchForm />
-      <MoviesCardList movies={props.movies} onDelete={props.onDelete} savedMovies={props.movies}/>
+      <SearchForm
+        onSearch={props.onSearch}
+        setIsSearchActive={setIsSearchActive}
+        isChecked={props.isChecked}
+        onChange={props.onChange}
+      />
+      <MoviesCardList
+        movies={props.movies}
+        onDelete={props.onDelete}
+        savedMovies={props.movies}
+        isSearchActive={isSearchActive}
+        foundMovies={props.foundMovies}
+      />
     </section>
   );
 }
