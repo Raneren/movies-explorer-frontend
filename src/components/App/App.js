@@ -28,7 +28,6 @@ function App() {
 
   const navigate = useNavigate();
 
-
   React.useEffect(() => {
     if (localStorage.foundMovies) {
       setFoundMovies(JSON.parse(localStorage.foundMovies));
@@ -125,6 +124,17 @@ function App() {
       })
       .catch((err) => console.log(err));
   }
+  //функция удаления карточки фильма
+  function handleDeleteMovie(movie) {
+    mainApi
+      .deleteSavedMovie(movie._id)
+      .then(() => {
+        setSavedMovies((movies) =>
+          movies.filter((currentMovie) => currentMovie._id !== movie._id)
+        );
+      })
+      .catch((err) => console.log(err));
+  }
   //функция переключения чекбокса
   function handleChangeFilterCheckbox() {
     setIsChecked(!isChecked);
@@ -199,6 +209,7 @@ function App() {
                   loggedIn={loggedIn}
                   element={SavedMovies}
                   movies={savedMovies}
+                  onDelete={handleDeleteMovie}
                 />
                 <Footer />
               </>

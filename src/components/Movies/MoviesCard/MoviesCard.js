@@ -8,6 +8,9 @@ function MoviesCard(props) {
   function handleSaveClick() {
     props.onSave(props.movie);
   }
+  function handleDeleteClick() {
+    props.onDelete(props.movie);
+  }
   return (
     <article className="movies-card">
       <a
@@ -39,6 +42,7 @@ function MoviesCard(props) {
         <button
           className="movies-card__button movies-card__button_delete"
           type="button"
+          onClick={handleDeleteClick}
         ></button>
       )}
       <div className="movies-card__info">

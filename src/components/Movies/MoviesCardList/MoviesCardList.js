@@ -31,7 +31,7 @@ function MoviesCardList(props) {
         {props.movies.length > 0
           ? props.movies
               .slice(0, visibleMovieCount)
-              .map((item) => <MoviesCard movie={item} key={item.id || item._id} onSave={props.onSave}/>)
+              .map((item) => <MoviesCard movie={item} key={item.id || item._id} onSave={props.onSave} onDelete={props.onDelete}/>)
           : props.isSearchActive && (
               <p className="movies-card__alert">Ничего не найдено</p>
             )}
