@@ -13,6 +13,7 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import * as auth from "../../utils/auth";
 import moviesApi from "../../utils/MoviesApi";
+import mainApi from "../../utils/MainApi";
 import "./App.css";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
 
   const [isEditFormActive, setIsEditFormActive] = React.useState(false);
   const [foundMovies, setFoundMovies] = React.useState([]);
+  const [savedMovies, setSavedMovies] = React.useState([]);
   const [isPreloaderActive, setIsPreloaderActive] = React.useState(false);
   const [isChecked, setIsChecked] = React.useState(false);
 
@@ -40,7 +42,7 @@ function App() {
     if (jwt) {
       auth
         .checkToken(jwt)
-        .then((res) => {
+        .then(() => {
           setLoggedIn(true);
           navigate("/");
         })
@@ -49,6 +51,23 @@ function App() {
   }
   React.useEffect(() => {
     handleCheckToken();
+  }, [loggedIn]);
+  //Получаем данные профиля и карточки фильмов с сервера для авторизованного пользователя
+  React.useEffect(() => {
+    if (loggedIn) {
+      mainApi
+        .getUserInfo()
+        .then((userData) => {
+          setCurrentUser(userData);
+        })
+        .catch((err) => console.log(err));
+      mainApi
+        .getSavedMovies()
+        .then((moviesData) => {
+          setSavedMovies(moviesData);
+        })
+        .catch((err) => console.log(err));
+    }
   }, [loggedIn]);
   //функция регистрации пользователя
   function handleRegister(name, email, password) {
@@ -155,7 +174,7 @@ function App() {
             element={
               <>
                 <Header loggedIn={loggedIn} />
-                <ProtectedRoute loggedIn={loggedIn} element={SavedMovies} />
+                <ProtectedRoute loggedIn={loggedIn} element={SavedMovies} movies={savedMovies} />
                 <Footer />
               </>
             }
