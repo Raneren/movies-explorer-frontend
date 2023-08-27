@@ -101,8 +101,17 @@ function App() {
     localStorage.removeItem("isChecked");
     setLoggedIn(false);
   }
-  //функция активации редактирования профиля
-  function handleEditButtonClick() {
+  //функция редактирования профиля
+  function handleUpdateUserInfo(value) {
+    mainApi
+      .setUserInfo(value)
+      .then((userData) => {
+        setCurrentUser(userData);
+      })
+      .catch((err) => console.log(err));
+  }
+  //функция переключения кнопки и активации редактирования профиля
+  function handleToggleEditButton() {
     isEditFormActive ? setIsEditFormActive(false) : setIsEditFormActive(true);
   }
   //функция переключения чекбокса
@@ -174,7 +183,11 @@ function App() {
             element={
               <>
                 <Header loggedIn={loggedIn} />
-                <ProtectedRoute loggedIn={loggedIn} element={SavedMovies} movies={savedMovies} />
+                <ProtectedRoute
+                  loggedIn={loggedIn}
+                  element={SavedMovies}
+                  movies={savedMovies}
+                />
                 <Footer />
               </>
             }
@@ -188,8 +201,9 @@ function App() {
                   loggedIn={loggedIn}
                   element={Profile}
                   isActive={isEditFormActive}
-                  onEditButtonClick={handleEditButtonClick}
+                  onEditToggle={handleToggleEditButton}
                   onSignOut={handleSignOut}
+                  onUpdateUserInfo={handleUpdateUserInfo}
                 />
               </>
             }
