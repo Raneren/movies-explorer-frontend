@@ -63,8 +63,6 @@
   position: absolute;
   top: 14px;
   right: 14px;
-  visibility: hidden;
-  opacity: 0;
   transition: opacity 0.4s ease-in-out;
   background: url(../../../images/saved-icon.svg) no-repeat;
   width: 21px;

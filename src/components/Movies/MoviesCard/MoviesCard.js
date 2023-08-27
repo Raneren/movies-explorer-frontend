@@ -4,6 +4,9 @@ import "./MoviesCard.css";
 
 function MoviesCard(props) {
   const location = useLocation();
+  const isSaved = props.savedMovies.find(
+    (item) => item.movieId === props.movie.id
+  );
 
   function handleSaveClick() {
     props.onSave(props.movie);
@@ -29,15 +32,18 @@ function MoviesCard(props) {
           alt={`Постер фильма: ${props.movie.nameRU}`}
         ></img>
       </a>
-      {location.pathname === "/movies" && (
-        <button
-          className="movies-card__button movies-card__button_save"
-          type="button"
-          onClick={handleSaveClick}
-        >
-          Сохранить
-        </button>
-      )}
+      {location.pathname === "/movies" &&
+        (isSaved ? (
+          <div className="movies-card__saved"></div>
+        ) : (
+          <button
+            className="movies-card__button movies-card__button_save"
+            type="button"
+            onClick={handleSaveClick}
+          >
+            Сохранить
+          </button>
+        ))}
       {location.pathname === "/saved-movies" && (
         <button
           className="movies-card__button movies-card__button_delete"

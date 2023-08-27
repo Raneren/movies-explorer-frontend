@@ -195,6 +195,7 @@ function App() {
                   onSearch={handleSearch}
                   isChecked={isChecked}
                   onChange={handleChangeFilterCheckbox}
+                  savedMovies={savedMovies}
                 />
                 <Footer />
               </>
@@ -210,6 +211,7 @@ function App() {
                   element={SavedMovies}
                   movies={savedMovies}
                   onDelete={handleDeleteMovie}
+                  savedMovies={savedMovies}
                 />
                 <Footer />
               </>

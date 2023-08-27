@@ -17,7 +17,13 @@ function Movies(props) {
       {props.preloaderActive ? (
         <Preloader />
       ) : (
-        <MoviesCardList movies={props.movies} isSearchActive={isSearchActive} onSave={props.onSave}/>
+        <MoviesCardList
+          movies={props.movies}
+          isSearchActive={isSearchActive}
+          onSave={props.onSave}
+          savedMovies={props.savedMovies}
+          foundMovies={props.foundMovies}
+        />
       )}
     </section>
   );
