@@ -28,6 +28,7 @@ function App() {
 
   const navigate = useNavigate();
 
+
   React.useEffect(() => {
     if (localStorage.foundMovies) {
       setFoundMovies(JSON.parse(localStorage.foundMovies));
@@ -114,6 +115,16 @@ function App() {
   function handleToggleEditButton() {
     isEditFormActive ? setIsEditFormActive(false) : setIsEditFormActive(true);
   }
+  //функция сохранения карточки фильма
+  function handleSaveMovie(movie) {
+    console.log(movie);
+    mainApi
+      .saveMovie(movie)
+      .then((newMovie) => {
+        setSavedMovies([newMovie, ...savedMovies]);
+      })
+      .catch((err) => console.log(err));
+  }
   //функция переключения чекбокса
   function handleChangeFilterCheckbox() {
     setIsChecked(!isChecked);
@@ -169,6 +180,7 @@ function App() {
                   loggedIn={loggedIn}
                   element={Movies}
                   movies={foundMovies}
+                  onSave={handleSaveMovie}
                   preloaderActive={isPreloaderActive}
                   onSearch={handleSearch}
                   isChecked={isChecked}

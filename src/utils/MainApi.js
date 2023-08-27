@@ -41,7 +41,7 @@ class MainApi {
     }).then((res) => this._checkResponse(res));
   }
   //Метод для сохранения фильма на сервере
-  savedMovie(data) {
+  saveMovie(data) {
     return fetch(`${this._baseUrl}/movies`, {
       method: "POST",
       headers: {
@@ -54,18 +54,17 @@ class MainApi {
         duration: data.duration,
         year: data.year,
         description: data.description,
-        image: data.image,
+        image: `https://api.nomoreparties.co${data.image.url}`,
         trailerLink: data.trailerLink,
-        thumbnail: data.thumbnail,
-        owner: data.owner,
-        movieId: data.movieId,
+        thumbnail: `https://api.nomoreparties.co${data.image.url}`,
+        movieId: data.id,
         nameRU: data.nameRU,
         nameEN: data.nameEN,
       }),
     }).then((res) => this._checkResponse(res));
   }
   //Метод удаления карточки с сервера
-  deleteMoviedOnServer(movieId) {
+  deleteSavedMovie(movieId) {
     return fetch(`${this._baseUrl}/movies/${movieId}`, {
       method: "DELETE",
       headers: {
