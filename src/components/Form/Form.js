@@ -10,7 +10,7 @@ function Form(props) {
         {props.children}
       </div>
       <div className="form__bottom-container">
-        <button type="submit" className="form__submit-btn">
+        <button type="submit" className="form__submit-btn" disabled={props.onDisabled}>
           {props.buttonText}
         </button>
         <div className="form__link-container">

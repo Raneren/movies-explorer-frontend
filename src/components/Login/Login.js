@@ -4,22 +4,41 @@ import Form from "../Form/Form";
 import FormFieldset from "../FormFieldset/FormFieldset";
 
 function Login(props) {
+  const [buttonDisabled, setButtonDisabled] = React.useState(false);
   const [formValue, setFormValue] = React.useState({
-    email: "",
-    password: "",
+    email: {
+      value: "",
+      isValid: false,
+      errorMessage: "",
+    },
+    password: {
+      value: "",
+      isValid: false,
+      errorMessage: "",
+    },
   });
-  function handleChange(e) {
-    const { name, value } = e.target;
-    setFormValue({
-      ...formValue,
-      [name]: value,
-    });
+  const isValid = formValue.email.isValid && formValue.password.isValid;
+  React.useEffect(() => {
+    isValid ? setButtonDisabled(false) : setButtonDisabled(true);
+  }, [isValid]);
+  function handleChange(evt) {
+    const { name, value, validity, validationMessage } = evt.target;
+    setFormValue((prev) => ({
+      ...prev,
+      [name]: {
+        ...formValue[name],
+        value,
+        isValid: validity.valid,
+        errorMessage: validationMessage,
+      },
+    }));
   }
-  function handleSubmit(e) {
-    e.preventDefault();
+  function handleSubmit(evt) {
+    evt.preventDefault();
     const { email, password } = formValue;
-    props.onLogin(email, password);
+    props.onLogin(email.value, password.value);
   }
+
   return (
     <section className="login">
       <Form
@@ -30,21 +49,24 @@ function Login(props) {
         linkPach={"/sign-up"}
         linkText={"Регистрация"}
         onSubmit={handleSubmit}
+        onDisabled={buttonDisabled}
         children={
           <>
             <FormFieldset
               onChange={handleChange}
-              value={formValue.email || ""}
+              value={formValue.email.value || ""}
               inputName={"email"}
               labelText={"E-mail"}
               inputType={"email"}
+              errorMessage={formValue.email.errorMessage}
             />
             <FormFieldset
               onChange={handleChange}
-              value={formValue.password || ""}
+              value={formValue.password.value || ""}
               inputName={"password"}
               labelText={"Пароль"}
               inputType={"password"}
+              errorMessage={formValue.password.errorMessage}
             />
           </>
         }

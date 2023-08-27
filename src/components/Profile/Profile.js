@@ -30,7 +30,7 @@ function Profile(props) {
   }
   return (
     <section className="profile">
-      <h2 className="profile__title">Привет, Игорь!</h2>
+      <h2 className="profile__title">{`Привет, ${name}!`}</h2>
       <form
         className="profile__form"
         name="profile__form"

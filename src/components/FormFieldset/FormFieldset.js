@@ -11,7 +11,9 @@ function FormFieldset(props) {
         {props.labelText}
       </label>
       <input
-        className={`form-field__input form-field__input_type_${props.inputName}`}
+        className={`form-field__input form-field__input_type_${
+          props.inputName
+        }`}
         id={`form-field__input_type_${props.inputName}`}
         type={props.inputType}
         name={props.inputName}
@@ -20,6 +22,7 @@ function FormFieldset(props) {
         value={props.value}
         required
       />
+      <span className="form-field__error">{props.errorMessage}</span>
     </fieldset>
   );
 }
