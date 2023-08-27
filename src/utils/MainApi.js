@@ -14,6 +14,7 @@ class MainApi {
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: {
+        "Content-Type": "application/json",
         authorization: this._authorization,
       },
     }).then((res) => this._checkResponse(res));
@@ -23,8 +24,8 @@ class MainApi {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: {
-        authorization: this._authorization,
         "Content-Type": "application/json",
+        authorization: this._authorization,
       },
       body: JSON.stringify({
         name: data.name,

@@ -40,6 +40,19 @@ function App() {
       setIsChecked(JSON.parse(localStorage.isChecked));
     }
   }, []);
+      //функция авторизации пользователя
+      function handleLogin(email, password) {
+        auth
+          .authorize(email, password)
+          .then((res) => {
+            localStorage.setItem("jwt", res.token);
+            setLoggedIn(true);
+            navigate("/");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
   //функция проверки токена
   function handleCheckToken() {
     const jwt = localStorage.getItem("jwt");
@@ -48,7 +61,7 @@ function App() {
         .checkToken(jwt)
         .then(() => {
           setLoggedIn(true);
-          navigate("/");
+          navigate("/movies");
         })
         .catch((err) => console.log(err));
     }
@@ -84,26 +97,13 @@ function App() {
         console.log(err);
       });
   }
-  //функция авторизации пользователя
-  function handleLogin(email, password) {
-    auth
-      .authorize(email, password)
-      .then((res) => {
-        localStorage.setItem("jwt", res.token);
-        setLoggedIn(true);
-        navigate("/");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
   //функция выхода из профиля
   function handleSignOut() {
+    setLoggedIn(false);
     localStorage.removeItem("jwt");
     localStorage.removeItem("foundMovies");
     localStorage.removeItem("searchQuery");
     localStorage.removeItem("isChecked");
-    setLoggedIn(false);
   }
   //функция редактирования профиля
   function handleUpdateUserInfo(value) {
