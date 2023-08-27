@@ -28,7 +28,7 @@ function MoviesCardList(props) {
   return (
     <div className="movies-card-list">
       <div className="movies-card-list__container">
-        {props.movies.length > 0
+        {props.foundMovies.length > 0
           ? props.foundMovies
               .slice(0, visibleMovieCount)
               .map((item) => (
