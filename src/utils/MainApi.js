@@ -74,12 +74,5 @@ class MainApi {
     }).then((res) => this._checkResponse(res));
   }
 }
-//Класс для работы с Api
-const mainApi = new MainApi({
-  baseUrl: "https://api.movies.malinavichus.nomoreparties.co",
-  headers: {
-    authorization: `Bearer ${localStorage.getItem("jwt")}`,
-  },
-});
 
-export default mainApi;
+export default MainApi;

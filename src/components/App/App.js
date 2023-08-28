@@ -13,7 +13,7 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import * as auth from "../../utils/auth";
 import moviesApi from "../../utils/MoviesApi";
-import mainApi from "../../utils/MainApi";
+import MainApi from "../../utils/MainApi";
 import "./App.css";
 
 function App() {
@@ -29,9 +29,18 @@ function App() {
   const [isCheckedInSaved, setIsCheckedInSaved] = React.useState(false);
 
   const navigate = useNavigate();
+  
+//Класс для работы с Api
+const mainApi = new MainApi({
+  baseUrl: "https://api.movies.malinavichus.nomoreparties.co",
+  headers: {
+    authorization: `Bearer ${localStorage.getItem("jwt")}`,
+  },
+});
   React.useEffect(() => {
     setFoundMoviesInSaved(savedMovies);
   }, [savedMovies]);
+
   React.useEffect(() => {
     if (localStorage.foundMovies) {
       setFoundMovies(JSON.parse(localStorage.foundMovies));
@@ -40,19 +49,6 @@ function App() {
       setIsChecked(JSON.parse(localStorage.isChecked));
     }
   }, []);
-      //функция авторизации пользователя
-      function handleLogin(email, password) {
-        auth
-          .authorize(email, password)
-          .then((res) => {
-            localStorage.setItem("jwt", res.token);
-            setLoggedIn(true);
-            navigate("/");
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }
   //функция проверки токена
   function handleCheckToken() {
     const jwt = localStorage.getItem("jwt");
@@ -69,23 +65,6 @@ function App() {
   React.useEffect(() => {
     handleCheckToken();
   }, [loggedIn]);
-  //Получаем данные профиля и сохраненные фильмы с сервера для авторизованного пользователя
-  React.useEffect(() => {
-    if (loggedIn) {
-      mainApi
-        .getUserInfo()
-        .then((userData) => {
-          setCurrentUser(userData);
-        })
-        .catch((err) => console.log(err));
-      mainApi
-        .getSavedMovies()
-        .then((moviesData) => {
-          setSavedMovies(moviesData);
-        })
-        .catch((err) => console.log(err));
-    }
-  }, [loggedIn]);
   //функция регистрации пользователя
   function handleRegister(name, email, password) {
     auth
@@ -97,13 +76,26 @@ function App() {
         console.log(err);
       });
   }
+  //функция авторизации пользователя
+  function handleLogin(email, password) {
+    auth
+      .authorize(email, password)
+      .then((res) => {
+        localStorage.setItem("jwt", res.token);
+        setLoggedIn(true);
+        navigate("/movies");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
   //функция выхода из профиля
   function handleSignOut() {
-    setLoggedIn(false);
     localStorage.removeItem("jwt");
     localStorage.removeItem("foundMovies");
     localStorage.removeItem("searchQuery");
     localStorage.removeItem("isChecked");
+    setLoggedIn(false);
   }
   //функция редактирования профиля
   function handleUpdateUserInfo(value) {
@@ -188,6 +180,23 @@ function App() {
       })
       .finally(() => setIsPreloaderActive(false));
   }
+  //Получаем данные профиля и сохраненные фильмы с сервера для авторизованного пользователя
+  React.useEffect(() => {
+    if (loggedIn) {
+      mainApi
+        .getUserInfo()
+        .then((userData) => {
+          setCurrentUser(userData);
+        })
+        .catch((err) => console.log(err));
+      mainApi
+        .getSavedMovies()
+        .then((moviesData) => {
+          setSavedMovies(moviesData);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [loggedIn]);
   return (
     <div className="page">
       <CurrentUserContext.Provider value={currentUser}>
