@@ -6,13 +6,24 @@ import "./Movies.css";
 
 function Movies(props) {
   const [isSearchActive, setIsSearchActive] = React.useState(false);
+  const [isChecked, setIsChecked] = React.useState(false);
+  //функция переключения чекбокса
+  function handleChangeFilterCheckbox() {
+    setIsChecked(!isChecked);
+    props.onCheckboxFilter(!isChecked);
+  }
+  React.useEffect(() => {
+    if (localStorage.isChecked) {
+      setIsChecked(JSON.parse(localStorage.isChecked));
+    }
+  }, []);
   return (
     <section className="movies">
       <SearchForm
         setIsSearchActive={setIsSearchActive}
         onSearch={props.onSearch}
-        isChecked={props.isChecked}
-        onChange={props.onChange}
+        isChecked={isChecked}
+        onChange={handleChangeFilterCheckbox}
       />
       {props.preloaderActive ? (
         <Preloader />
@@ -21,6 +32,7 @@ function Movies(props) {
           movies={props.movies}
           isSearchActive={isSearchActive}
           onSave={props.onSave}
+          onDelete={props.onDelete}
           savedMovies={props.savedMovies}
           foundMovies={props.foundMovies}
         />

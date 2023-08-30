@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
@@ -25,28 +25,20 @@ function App() {
   const [savedMovies, setSavedMovies] = React.useState([]);
   const [foundMoviesInSaved, setFoundMoviesInSaved] = React.useState([]);
   const [isPreloaderActive, setIsPreloaderActive] = React.useState(false);
-  const [isChecked, setIsChecked] = React.useState(false);
-  const [isCheckedInSaved, setIsCheckedInSaved] = React.useState(false);
 
   const navigate = useNavigate();
-  
-//Класс для работы с Api
-const mainApi = new MainApi({
-  baseUrl: "https://api.movies.malinavichus.nomoreparties.co",
-  headers: {
-    authorization: `Bearer ${localStorage.getItem("jwt")}`,
-  },
-});
-  React.useEffect(() => {
-    setFoundMoviesInSaved(savedMovies);
-  }, [savedMovies]);
+  const location = useLocation();
 
+  //Класс для работы с Api
+  const mainApi = new MainApi({
+    baseUrl: "https://api.movies.malinavichus.nomoreparties.co",
+    headers: {
+      authorization: `Bearer ${localStorage.getItem("jwt")}`,
+    },
+  });
   React.useEffect(() => {
     if (localStorage.foundMovies) {
       setFoundMovies(JSON.parse(localStorage.foundMovies));
-    }
-    if (localStorage.isChecked) {
-      setIsChecked(JSON.parse(localStorage.isChecked));
     }
   }, []);
   //функция проверки токена
@@ -70,7 +62,7 @@ const mainApi = new MainApi({
     auth
       .register(name, email, password)
       .then(() => {
-        navigate("/sign-in");
+        handleLogin(email, password);
       })
       .catch((err) => {
         console.log(err);
@@ -121,37 +113,37 @@ const mainApi = new MainApi({
   }
   //функция удаления карточки фильма
   function handleDeleteMovie(movie) {
+    if (!movie._id) {
+      const savedMovie = savedMovies.find(
+        (savedMovie) => savedMovie.movieId === movie.id
+      );
+      movie._id = savedMovie._id;
+    }
     mainApi
       .deleteSavedMovie(movie._id)
       .then(() => {
         setSavedMovies((movies) =>
           movies.filter((currentMovie) => currentMovie._id !== movie._id)
         );
+        setFoundMoviesInSaved((movies) =>
+          movies.filter((currentMovie) => currentMovie._id !== movie._id)
+        );
       })
       .catch((err) => console.log(err));
   }
-  //функция переключения чекбокса
-  function handleChangeFilterCheckbox() {
-    setIsChecked(!isChecked);
-  }
-  //функция переключения чекбокса в сохраненных фильмах
-  function handleChangeFilterCheckboxInSaved() {
-    setIsCheckedInSaved(!isCheckedInSaved);
-  }
+
   //функция поиска фильмов среди сохраненных
   function handleSearchInSavedMovies(movie) {
-    const foundMovies = savedMovies.filter((item) =>
-      isCheckedInSaved
-        ? (item.nameRU.toLowerCase().includes(movie.toLowerCase()) ||
-            item.nameEN.toLowerCase().includes(movie.toLowerCase())) &
-          (item.duration <= 40)
-        : item.nameRU.toLowerCase().includes(movie.toLowerCase()) ||
-          item.nameEN.toLowerCase().includes(movie.toLowerCase())
+    setIsPreloaderActive(true);
+    const foundMovies = savedMovies.filter(
+      (item) =>
+        item.nameRU.toLowerCase().includes(movie.toLowerCase()) ||
+        item.nameEN.toLowerCase().includes(movie.toLowerCase())
     );
     setFoundMoviesInSaved(foundMovies);
   }
   //функция поиска фильмов
-  function handleSearch(movie) {
+  function handleSearch(movie, checked) {
     setIsPreloaderActive(true);
     moviesApi
       .getAllMovies()
@@ -159,13 +151,10 @@ const mainApi = new MainApi({
         movies.map((item) => {
           return item;
         });
-        const foundMovies = movies.filter((item) =>
-          isChecked
-            ? (item.nameRU.toLowerCase().includes(movie.toLowerCase()) ||
-                item.nameEN.toLowerCase().includes(movie.toLowerCase())) &
-              (item.duration <= 40)
-            : item.nameRU.toLowerCase().includes(movie.toLowerCase()) ||
-              item.nameEN.toLowerCase().includes(movie.toLowerCase())
+        const foundMovies = movies.filter(
+          (item) =>
+            item.nameRU.toLowerCase().includes(movie.toLowerCase()) ||
+            item.nameEN.toLowerCase().includes(movie.toLowerCase())
         );
         return foundMovies;
       })
@@ -173,12 +162,30 @@ const mainApi = new MainApi({
         setFoundMovies(foundMovies);
         localStorage.setItem("foundMovies", JSON.stringify(foundMovies));
         localStorage.setItem("searchQuery", movie);
-        localStorage.setItem("isChecked", JSON.stringify(isChecked));
+        localStorage.setItem("isChecked", JSON.stringify(checked));
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
       })
       .finally(() => setIsPreloaderActive(false));
+  }
+  //функция фильтра короткометражек
+  function handleCheckboxFilter(checked) {
+    let shortMovies;
+    let movies =
+      location.pathname === "/movies"
+        ? JSON.parse(localStorage.foundMovies)
+        : savedMovies;
+    if (checked) {
+      shortMovies = movies.filter((item) => item.duration <= 40);
+    } else if (!checked) {
+      shortMovies = movies;
+    }
+    location.pathname === "/movies"
+      ? setFoundMovies(shortMovies)
+      : setFoundMoviesInSaved(shortMovies);
+    location.pathname === "/movies" &&
+      localStorage.setItem("isChecked", JSON.stringify(checked));
   }
   //Получаем данные профиля и сохраненные фильмы с сервера для авторизованного пользователя
   React.useEffect(() => {
@@ -221,10 +228,10 @@ const mainApi = new MainApi({
                   element={Movies}
                   movies={foundMovies}
                   onSave={handleSaveMovie}
+                  onDelete={handleDeleteMovie}
                   preloaderActive={isPreloaderActive}
                   onSearch={handleSearch}
-                  isChecked={isChecked}
-                  onChange={handleChangeFilterCheckbox}
+                  onCheckboxFilter={handleCheckboxFilter}
                   savedMovies={savedMovies}
                   foundMovies={foundMovies}
                 />
@@ -242,11 +249,11 @@ const mainApi = new MainApi({
                   element={SavedMovies}
                   movies={savedMovies}
                   onSearch={handleSearchInSavedMovies}
-                  isChecked={isCheckedInSaved}
-                  onChange={handleChangeFilterCheckboxInSaved}
+                  onCheckboxFilter={handleCheckboxFilter}
                   onDelete={handleDeleteMovie}
                   savedMovies={savedMovies}
                   foundMovies={foundMoviesInSaved}
+                  setFoundMoviesInSaved={setFoundMoviesInSaved}
                 />
                 <Footer />
               </>

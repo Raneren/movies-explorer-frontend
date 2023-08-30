@@ -4,33 +4,69 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 import "./Profile.css";
 
 function Profile(props) {
-  const [name, setName] = React.useState("");
-  const [email, setEmail] = React.useState("");
   const currentUser = React.useContext(CurrentUserContext);
-
+  const [alarmActive, setAlarmActive] = React.useState(false);
+  const [buttonDisabled, setButtonDisabled] = React.useState(false);
+  const [formValue, setFormValue] = React.useState({
+    name: {
+      value: "",
+      isValid: false,
+      errorMessage: "",
+    },
+    email: {
+      value: "",
+      isValid: false,
+      errorMessage: "",
+    },
+  });
+  const isValid = formValue.name.isValid && formValue.email.isValid;
   React.useEffect(() => {
-    setName(currentUser.name);
-    setEmail(currentUser.email);
-  }, [currentUser]);
-
-  function handleChangeName(e) {
-    setName(e.target.value);
+    isValid &&
+    (currentUser.name !== formValue.name.value ||
+      currentUser.email !== formValue.email.value)
+      ? setButtonDisabled(false)
+      : setButtonDisabled(true);
+  }, [isValid, formValue]);
+  function handleChange(evt) {
+    const { name, value, validity, validationMessage } = evt.target;
+    setFormValue((prev) => ({
+      ...prev,
+      [name]: {
+        ...formValue[name],
+        value,
+        isValid: validity.valid,
+        errorMessage: validationMessage,
+      },
+    }));
   }
-  function handleChangeEmail(e) {
-    setEmail(e.target.value);
-  }
-  function handleSubmit(e) {
-    e.preventDefault();
+  function handleSubmit(evt) {
+    evt.preventDefault();
     // Передаём значения управляемых компонентов во внешний обработчик
     props.onUpdateUserInfo({
-      name,
-      email,
+      name: formValue.name.value,
+      email: formValue.email.value,
     });
     props.onEditToggle();
+    setAlarmActive(true);
   }
+  React.useEffect(() => {
+    setFormValue({
+      name: {
+        value: currentUser.name,
+        isValid: true,
+        errorMessage: "",
+      },
+      email: {
+        value: currentUser.email,
+        isValid: true,
+        errorMessage: "",
+      },
+    });
+    setAlarmActive(false);
+  }, []);
   return (
     <section className="profile">
-      <h2 className="profile__title">{`Привет, ${name}!`}</h2>
+      <h2 className="profile__title">{`Привет, ${currentUser.name}!`}</h2>
       <form
         className="profile__form"
         name="profile__form"
@@ -50,11 +86,14 @@ function Profile(props) {
             id="profile__form-input_type_name"
             type="text"
             name="name"
-            value={name || ""}
-            onChange={handleChangeName}
+            value={formValue.name.value || ""}
+            onChange={handleChange}
             required
             style={props.isActive ? {} : { pointerEvents: "none" }}
           />
+          <span className="profile__form-input-error">
+            {formValue.name.errorMessage}
+          </span>
         </fieldset>
         <fieldset className="profile__form-field">
           <label
@@ -69,18 +108,28 @@ function Profile(props) {
             id="profile__form-input_type_email"
             type="email"
             name="email"
-            value={email || ""}
-            onChange={handleChangeEmail}
+            value={formValue.email.value || ""}
+            onChange={handleChange}
             required
             style={props.isActive ? {} : { pointerEvents: "none" }}
           />
+          <span className="profile__form-input-error">
+            {formValue.email.errorMessage}
+          </span>
         </fieldset>
         {props.isActive ? (
-          <button type="submit" className="profile__form-submit">
+          <button
+            type="submit"
+            className="profile__form-submit "
+            disabled={buttonDisabled}
+          >
             Сохранить
           </button>
         ) : (
           <>
+            {alarmActive && (
+              <p className="profile__alert">Данные успешно сохранены</p>
+            )}
             <button
               type="button"
               className="profile__form-edit"

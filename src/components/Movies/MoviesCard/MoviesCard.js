@@ -34,7 +34,10 @@ function MoviesCard(props) {
       </a>
       {location.pathname === "/movies" &&
         (isSaved ? (
-          <div className="movies-card__saved"></div>
+          <div
+            className="movies-card__saved"
+            onClick={handleDeleteClick}
+          ></div>
         ) : (
           <button
             className="movies-card__button movies-card__button_save"

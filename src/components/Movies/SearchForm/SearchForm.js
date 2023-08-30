@@ -12,7 +12,7 @@ function SearchForm(props) {
   }
   function handleSearchSubmit(evt) {
     evt.preventDefault();
-    props.onSearch(searchQuery);
+    props.onSearch(searchQuery, props.isChecked);
     props.setIsSearchActive(true);
   }
   React.useEffect(() => {
@@ -32,7 +32,11 @@ function SearchForm(props) {
         ></input>
         <button className="search-form__button" type="submit"></button>
       </form>
-      <FilterCheckbox isChecked={props.isChecked} onChange={props.onChange} />
+      <FilterCheckbox
+        isChecked={props.isChecked}
+        onChange={props.onChange}
+        onCheckboxSearch={props.onCheckboxSearch}
+      />
     </>
   );
 }

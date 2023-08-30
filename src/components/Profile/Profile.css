@@ -14,6 +14,7 @@
   line-height: normal;
 }
 .profile__form {
+  position: relative;
   margin-top: 123px;
   width: 100%;
   display: flex;
@@ -59,6 +60,17 @@
   line-height: normal;
   outline: 0;
 }
+.profile__form-input-error {
+  position: absolute;
+  bottom: -30px;
+  right: 0;
+  margin: 0;
+  color: #ee3465;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
 .profile__form-edit {
   cursor: pointer;
   margin: 220px 0 0;
@@ -75,7 +87,6 @@
 .profile__form-edit:hover {
   opacity: 0.8;
 }
-
 .profile__form-submit {
   cursor: pointer;
   margin-top: 223px;
@@ -94,6 +105,11 @@
 .profile__form-submit:hover {
   opacity: 0.8;
 }
+.profile__form-submit:disabled {
+  pointer-events: none;
+  background: #f8f8f8;
+  color: #c2c2c2;
+}
 .profile__out-link {
   margin-top: 16px;
   text-decoration: none;
@@ -106,6 +122,17 @@
 }
 .profile__out-link:hover {
   opacity: 0.7;
+}
+.profile__alert {
+  top: 150px;
+  position: absolute;
+  margin: 0;
+  text-align: center;
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 @media screen and (max-width: 768px) {
   .profile {
@@ -128,10 +155,10 @@
     margin: 379px 0 0;
     font-size: 12px;
   }
-  .profile__out-link{
+  .profile__out-link {
     font-size: 12px;
   }
-  .profile__form-submit{
+  .profile__form-submit {
     margin: 379px 0 0;
   }
 }

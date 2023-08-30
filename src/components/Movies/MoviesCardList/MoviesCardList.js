@@ -1,9 +1,11 @@
 import React from "react";
 import "./MoviesCardList.css";
+import { useLocation } from "react-router-dom";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import { useMediaQuery } from "../../../hooks/useMediaQuery";
 
 function MoviesCardList(props) {
+  const location = useLocation();
   const isDesktop = useMediaQuery("(min-width: 1280px)");
   const isTablet = useMediaQuery("(min-width: 650px)");
   //Определяем начальное количество карточек в зависимости от ширины экрана
@@ -28,23 +30,28 @@ function MoviesCardList(props) {
   return (
     <div className="movies-card-list">
       <div className="movies-card-list__container">
-        {props.foundMovies.length > 0
-          ? props.foundMovies
-              .slice(0, visibleMovieCount)
-              .map((item) => (
-                <MoviesCard
-                  movie={item}
-                  key={item.id || item._id}
-                  onSave={props.onSave}
-                  onDelete={props.onDelete}
-                  savedMovies={props.savedMovies}
-                />
-              ))
-          : props.isSearchActive && (
-              <p className="movies-card__alert">Ничего не найдено</p>
-            )}
+        {props.foundMovies
+          .slice(
+            0,
+            location.pathname === "/saved-movies"
+              ? props.movies.length
+              : visibleMovieCount
+          )
+          .map((item) => (
+            <MoviesCard
+              movie={item}
+              key={item.id || item._id}
+              onSave={props.onSave}
+              onDelete={props.onDelete}
+              savedMovies={props.savedMovies}
+            />
+          ))}
+        {props.isSearchActive && props.foundMovies.length === 0 && (
+          <p className="movies-card__alert">Ничего не найдено</p>
+        )}
       </div>
-      {props.movies.length <= visibleMovieCount ? (
+      {location.pathname === "/saved-movies" ||
+      props.movies.length <= visibleMovieCount ? (
         ""
       ) : (
         <button

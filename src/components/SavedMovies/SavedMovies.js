@@ -5,13 +5,22 @@ import "./SavedMovies.css";
 
 function SavedMovies(props) {
   const [isSearchActive, setIsSearchActive] = React.useState(false);
+  const [isCheckedInSaved, setIsCheckedInSaved] = React.useState(false);
+  //функция переключения чекбокса в сохраненных фильмах
+  function handleChangeFilterCheckboxInSaved() {
+    setIsCheckedInSaved(!isCheckedInSaved);
+    props.onCheckboxFilter(!isCheckedInSaved);
+  }
+  React.useEffect(() => {
+    props.setFoundMoviesInSaved(props.movies);
+  }, []);
   return (
     <section className="saved-movies">
       <SearchForm
         onSearch={props.onSearch}
         setIsSearchActive={setIsSearchActive}
-        isChecked={props.isChecked}
-        onChange={props.onChange}
+        isChecked={isCheckedInSaved}
+        onChange={handleChangeFilterCheckboxInSaved}
       />
       <MoviesCardList
         movies={props.movies}
