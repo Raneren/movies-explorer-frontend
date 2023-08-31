@@ -49,14 +49,13 @@ function App() {
         .checkToken(jwt)
         .then(() => {
           setLoggedIn(true);
-          navigate("/movies");
         })
         .catch((err) => console.log(err));
     }
   }
   React.useEffect(() => {
     handleCheckToken();
-  }, [loggedIn]);
+  }, []);
   //функция регистрации пользователя
   function handleRegister(name, email, password) {
     auth
@@ -87,6 +86,7 @@ function App() {
     localStorage.removeItem("foundMovies");
     localStorage.removeItem("searchQuery");
     localStorage.removeItem("isChecked");
+    setFoundMovies([]);
     setLoggedIn(false);
   }
   //функция редактирования профиля
@@ -174,7 +174,9 @@ function App() {
     let shortMovies;
     let movies =
       location.pathname === "/movies"
-        ? JSON.parse(localStorage.foundMovies)
+        ? localStorage.foundMovies
+          ? JSON.parse(localStorage.foundMovies)
+          : foundMovies
         : savedMovies;
     if (checked) {
       shortMovies = movies.filter((item) => item.duration <= 40);
