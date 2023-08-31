@@ -58,6 +58,7 @@ function Login(props) {
               inputName={"email"}
               labelText={"E-mail"}
               inputType={"email"}
+              pattern={".+@.+\..+"}
               errorMessage={formValue.email.errorMessage}
             />
             <FormFieldset

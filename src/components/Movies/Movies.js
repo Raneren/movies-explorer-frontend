@@ -15,6 +15,7 @@ function Movies(props) {
   React.useEffect(() => {
     if (localStorage.isChecked) {
       setIsChecked(JSON.parse(localStorage.isChecked));
+      props.onCheckboxFilter(JSON.parse(localStorage.isChecked));
     }
   }, []);
   return (

@@ -20,6 +20,7 @@ function FormFieldset(props) {
         placeholder={props.labelText}
         onChange={props.onChange}
         value={props.value}
+        pattern={props.pattern}
         required
       />
       <span className="form-field__error">{props.errorMessage}</span>

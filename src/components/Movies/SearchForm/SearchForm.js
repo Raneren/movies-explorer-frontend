@@ -32,11 +32,7 @@ function SearchForm(props) {
         ></input>
         <button className="search-form__button" type="submit"></button>
       </form>
-      <FilterCheckbox
-        isChecked={props.isChecked}
-        onChange={props.onChange}
-        onCheckboxSearch={props.onCheckboxSearch}
-      />
+      <FilterCheckbox isChecked={props.isChecked} onChange={props.onChange} />
     </>
   );
 }
