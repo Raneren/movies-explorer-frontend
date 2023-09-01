@@ -108,7 +108,7 @@ function Profile(props) {
             id="profile__form-input_type_email"
             type="email"
             name="email"
-            pattern=".+@.+\..+/i"
+            pattern=".+@.+\..+"
             value={formValue.email.value || ""}
             onChange={handleChange}
             required
