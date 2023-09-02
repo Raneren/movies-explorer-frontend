@@ -63,7 +63,10 @@ function Profile(props) {
       },
     });
     setAlarmActive(false);
-  }, []);
+  }, [currentUser]);
+  React.useEffect(() => {
+    setAlarmActive(false);
+  }, [currentUser]);
   return (
     <section className="profile">
       <h2 className="profile__title">{`Привет, ${currentUser.name}!`}</h2>

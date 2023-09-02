@@ -30,11 +30,14 @@ function App() {
   const [foundMovies, setFoundMovies] = React.useState([]);
   const [savedMovies, setSavedMovies] = React.useState([]);
   const [foundMoviesInSaved, setFoundMoviesInSaved] = React.useState([]);
+  const [foundMoviesInSavedBuffer, setFoundMoviesInSavedBuffer] =
+    React.useState([]);
   const [isPreloaderActive, setIsPreloaderActive] = React.useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
 
+  console.log(foundMoviesInSavedBuffer.length);
   //Класс для работы с Api
   const mainApi = new MainApi({
     baseUrl: "https://api.movies.malinavichus.nomoreparties.co",
@@ -47,6 +50,7 @@ function App() {
       setFoundMovies(JSON.parse(localStorage.foundMovies));
     }
   }, []);
+
   //функция проверки токена
   function handleCheckToken() {
     const jwt = localStorage.getItem("jwt");
@@ -115,6 +119,7 @@ function App() {
       .saveMovie(movie)
       .then((newMovie) => {
         setSavedMovies([newMovie, ...savedMovies]);
+        setFoundMoviesInSavedBuffer([newMovie, ...savedMovies]);
       })
       .catch((err) => console.log(err));
   }
@@ -135,19 +140,23 @@ function App() {
         setFoundMoviesInSaved((movies) =>
           movies.filter((currentMovie) => currentMovie._id !== movie._id)
         );
+        setFoundMoviesInSavedBuffer((movies) =>
+          movies.filter((currentMovie) => currentMovie._id !== movie._id)
+        );
       })
       .catch((err) => console.log(err));
   }
 
   //функция поиска фильмов среди сохраненных
-  function handleSearchInSavedMovies(movie) {
-    setIsPreloaderActive(true);
+  function handleSearchInSavedMovies(movie, checked) {
     const foundMovies = savedMovies.filter(
       (item) =>
         item.nameRU.toLowerCase().includes(movie.toLowerCase()) ||
         item.nameEN.toLowerCase().includes(movie.toLowerCase())
     );
     setFoundMoviesInSaved(foundMovies);
+    setFoundMoviesInSavedBuffer(foundMovies);
+    checked && handleCheckboxFilter(checked);
   }
   //функция поиска фильмов
   function handleSearch(movie, checked) {
@@ -185,7 +194,7 @@ function App() {
         ? localStorage.foundMovies
           ? JSON.parse(localStorage.foundMovies)
           : foundMovies
-        : savedMovies;
+        : foundMoviesInSavedBuffer;
     if (checked) {
       shortMovies = movies.filter((item) => item.duration <= 40);
     } else if (!checked) {
@@ -210,6 +219,8 @@ function App() {
         .getSavedMovies()
         .then((moviesData) => {
           setSavedMovies(moviesData);
+          setFoundMoviesInSaved(moviesData);
+          setFoundMoviesInSavedBuffer(moviesData);
         })
         .catch((err) => console.log(err));
     }
