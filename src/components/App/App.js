@@ -1,5 +1,11 @@
 import React from "react";
-import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  Navigate,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
@@ -49,6 +55,7 @@ function App() {
         .checkToken(jwt)
         .then(() => {
           setLoggedIn(true);
+          navigate();
         })
         .catch((err) => console.log(err));
     }
@@ -163,6 +170,7 @@ function App() {
         localStorage.setItem("foundMovies", JSON.stringify(foundMovies));
         localStorage.setItem("searchQuery", movie);
         localStorage.setItem("isChecked", JSON.stringify(checked));
+        checked && handleCheckboxFilter(checked);
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
@@ -280,19 +288,27 @@ function App() {
           <Route
             path="/sign-in"
             element={
-              <>
-                <Header loggedIn={loggedIn} />
-                <Login onLogin={handleLogin} />
-              </>
+              loggedIn ? (
+                <Navigate to="/" replace />
+              ) : (
+                <>
+                  <Header loggedIn={loggedIn} />
+                  <Login onLogin={handleLogin} />
+                </>
+              )
             }
           />
           <Route
             path="/sign-up"
             element={
-              <>
-                <Header loggedIn={loggedIn} />
-                <Register onRegister={handleRegister} />
-              </>
+              loggedIn ? (
+                <Navigate to="/" replace />
+              ) : (
+                <>
+                  <Header loggedIn={loggedIn} />
+                  <Register onRegister={handleRegister} />
+                </>
+              )
             }
           />
           <Route path="*" element={<PageNotFound />} />

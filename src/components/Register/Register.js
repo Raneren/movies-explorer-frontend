@@ -73,7 +73,7 @@ function Register(props) {
               inputName={"email"}
               labelText={"E-mail"}
               inputType={"email"}
-              pattern={".+@.+\..+"}
+              pattern={"[\\w\\-]+@[\\w\\-]+\\.[a-zA-Z]{2,}"}
               errorMessage={formValue.email.errorMessage}
             />
             <FormFieldset
