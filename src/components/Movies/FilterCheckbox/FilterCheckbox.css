@@ -28,12 +28,6 @@
   visibility: hidden;
 }
 .filter-checkbox__input:checked ~ .filter-checkbox__label::after {
-  position: absolute;
-  left: -48px;
-  bottom: -2px;
-  content: "";
-  width: 36px;
-  height: 20px;
   background: url(../../../images/smalltumbon.svg) no-repeat center;
 }
 @media screen and (max-width: 768px) {

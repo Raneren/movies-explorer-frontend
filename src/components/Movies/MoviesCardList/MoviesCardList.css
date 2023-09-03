@@ -5,6 +5,8 @@
   padding-top: 80px;
   display: flex;
   flex-direction: column;
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-style: normal;
 }
 .movies-card-list__container {
   width: 100%;
@@ -13,6 +15,13 @@
   grid-auto-rows: min-content;
   justify-content: center;
   gap: 59px 30px;
+}
+.movies-card__alert{
+  margin: 0;
+  color: #fff;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
 }
 .movies-card-list__button {
   margin: 76px auto 80px;
@@ -24,9 +33,7 @@
   background: none;
   color: #fff;
   text-align: center;
-  font-family: Inter;
   font-size: 12px;
-  font-style: normal;
   font-weight: 500;
   line-height: normal;
   cursor: pointer;

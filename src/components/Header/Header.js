@@ -4,7 +4,7 @@ import logo from "../../images/logo.svg";
 import Navigation from "../Navigation/Navigation";
 import "./Header.css";
 import DropDownMenu from "../DropDownMenu/DropDownMenu";
-function Header() {
+function Header(props) {
   const [isDropDownMenuActive, setIsDropDownMenuActive] = React.useState(false);
   const location = useLocation();
 
@@ -25,17 +25,7 @@ function Header() {
       <Link to="/" className="header__link">
         <img className="header__logo" src={logo} alt="Логотип" />
       </Link>
-      {location.pathname === "/" && (
-        <div className="header__links">
-          <Link to="/sign-up" className="header__link header__link_type_signup">
-            Регистрация
-          </Link>
-          <Link to="/sign-in" className="header__link header__link_type_signin">
-            Войти
-          </Link>
-        </div>
-      )}
-      {location.pathname === "/profile" && (
+      {props.loggedIn ? (
         <>
           <Navigation />
           <Link
@@ -45,22 +35,26 @@ function Header() {
             Аккаунт
           </Link>
         </>
+      ) : (
+        location.pathname !== "/sign-up" &&
+        location.pathname !== "/sign-in" && (
+          <div className="header__links">
+            <Link
+              to="/sign-up"
+              className="header__link header__link_type_signup"
+            >
+              Регистрация
+            </Link>
+            <Link
+              to="/sign-in"
+              className="header__link header__link_type_signin"
+            >
+              Войти
+            </Link>
+          </div>
+        )
       )}
-      {(location.pathname === "/movies" ||
-        location.pathname === "/saved-movies") && (
-        <>
-          <Navigation />
-          <Link
-            to="/profile"
-            className="header__link header__link_type_profile"
-          >
-            Аккаунт
-          </Link>
-        </>
-      )}
-      {(location.pathname === "/movies" ||
-        location.pathname === "/saved-movies" ||
-        location.pathname === "/profile") && (
+      {props.loggedIn && (
         <button
           className="header__menu-button"
           type="button"
